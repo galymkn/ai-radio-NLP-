@@ -22,6 +22,8 @@ Raw article (RSS / Telegram)
 ```
 
 ## Reproduce
+> **Public repository copy:** article texts are removed; see [DATA_ACCESS.md](DATA_ACCESS.md) for what still runs and how to get the full dataset.
+
 Python 3.12, macOS arm64 (the reported run). From the radio project root on the demo Mac:
 ```sh
 source .venv/bin/activate
