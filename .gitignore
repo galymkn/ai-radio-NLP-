@@ -1,0 +1,14 @@
+data/
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+*.egg-info/
+*.session
+*.session-journal
+*.egg-info/
+.pytest_cache/
+.DS_Store
+# full texts of real news articles: keep local, do not publish
+live-annotations.json

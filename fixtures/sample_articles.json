@@ -1,0 +1,51 @@
+[
+  {
+    "url": "https://example.com/demo/metro-1",
+    "source": "Demo Wire",
+    "kind": "fixture",
+    "title": "Almaty metro opens two new stations on the western line",
+    "text": "Almaty's metro opened two new stations on its western line on Monday. City officials said the extension adds three kilometres of track. The new stations are expected to serve about forty thousand passengers a day. Construction took four years, according to the city transport department."
+  },
+  {
+    "url": "https://example.com/demo/metro-2",
+    "source": "Example Times",
+    "kind": "fixture",
+    "title": "Two new Almaty metro stations open on western line",
+    "text": "Two new metro stations opened in Almaty on Monday, extending the western line by three kilometres. The city transport department said about forty thousand passengers a day are expected. Officials said fares will remain unchanged."
+  },
+  {
+    "url": "https://t.me/demo_channel/101",
+    "source": "@demo_channel",
+    "kind": "fixture",
+    "title": "В Алматы открылись две новые станции метро",
+    "text": "В Алматы открылись две новые станции метро на западной линии. Протяжённость линии увеличилась на три километра. Ожидается, что станциями будут пользоваться около сорока тысяч пассажиров в день."
+  },
+  {
+    "url": "https://example.com/demo/rate-1",
+    "source": "Demo Wire",
+    "kind": "fixture",
+    "title": "Central bank keeps base rate unchanged at monthly meeting",
+    "text": "The central bank kept its base rate unchanged at its monthly meeting on Friday. The bank said inflation is slowing but remains above target. The next rate decision is scheduled for next month. Analysts had expected the decision."
+  },
+  {
+    "url": "https://example.com/demo/rate-2",
+    "source": "Example Times",
+    "kind": "fixture",
+    "title": "Central bank leaves base rate unchanged, cites slowing inflation",
+    "text": "The central bank left its base rate unchanged on Friday, saying inflation is slowing but is still above its target. Most analysts had expected the move. The next meeting is scheduled for next month."
+  },
+  {
+    "url": "https://example.com/demo/storm-1",
+    "source": "Example Times",
+    "kind": "fixture",
+    "title": "Heavy snowfall closes mountain roads near Almaty",
+    "text": "Heavy snowfall closed several mountain roads near Almaty on Sunday. Emergency services said no injuries were reported. Drivers are advised to avoid the area until the roads are cleared. Forecasters expect snowfall to ease by Tuesday."
+  },
+  {
+    "url": "https://example.com/demo/chess-1",
+    "source": "Demo Wire",
+    "kind": "fixture",
+    "title": "Local student wins regional chess championship",
+    "text": "A university student won the regional chess championship on Saturday after nine rounds. The tournament featured more than one hundred players. The winner qualifies for the national championship next spring."
+  }
+]

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NewsRadio</title>
+<style>
+  :root { --bg:#0f1115; --panel:#171a21; --line:#262b35; --text:#e8eaed; --muted:#8b93a1; --accent:#ff4d4f; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif; background:var(--bg); color:var(--text); }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 20px 60px; }
+  header { display:flex; align-items:center; gap:12px; margin-bottom: 24px; }
+  .dot { width:10px; height:10px; border-radius:50%; background:var(--muted); }
+  .live .dot { background: var(--accent); box-shadow: 0 0 0 0 rgba(255,77,79,.6); animation: pulse 1.6s infinite; }
+  @keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(255,77,79,0); } 100% { box-shadow: 0 0 0 0 rgba(255,77,79,0); } }
+  h1 { font-size: 20px; margin:0; letter-spacing:.02em; }
+  #stats { margin-left:auto; color:var(--muted); font-size:13px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:22px; }
+  .meta { display:flex; gap:8px; align-items:center; color:var(--muted); font-size:13px; text-transform:uppercase; letter-spacing:.06em; }
+  .tag { border:1px solid var(--line); border-radius:999px; padding:1px 10px; }
+  #headline { font-size: 24px; line-height:1.25; margin: 10px 0 12px; }
+  #script { color:#c9ced6; margin:0 0 14px; }
+  #sources { color:var(--muted); font-size:13px; }
+  .controls { display:flex; gap:10px; margin-top: 18px; align-items:center; }
+  button { background:var(--text); color:var(--bg); border:0; border-radius:10px; padding:10px 18px; font-weight:600; cursor:pointer; font-size:14px; }
+  button.secondary { background:transparent; color:var(--text); border:1px solid var(--line); }
+  progress { flex:1; height:4px; appearance:none; }
+  progress::-webkit-progress-bar { background:var(--line); border-radius:2px; }
+  progress::-webkit-progress-value { background:var(--text); border-radius:2px; }
+  h2 { font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin:32px 0 10px; }
+  #queue { list-style:none; margin:0; padding:0; }
+  #queue li { display:flex; gap:12px; padding:10px 2px; border-bottom:1px solid var(--line); }
+  #queue .p { color:var(--muted); font-variant-numeric: tabular-nums; width:22px; }
+  #queue .c { color:var(--muted); font-size:12px; margin-left:auto; white-space:nowrap; }
+  .hint { color:var(--muted); font-size:13px; margin-top:24px; }
+  code { background:var(--panel); padding:1px 6px; border-radius:6px; }
+</style>
+</head>
+<body>
+<main>
+  <header id="hdr">
+    <span class="dot"></span><h1 id="station">NewsRadio</h1><span id="stats"></span>
+  </header>
+
+  <section class="card">
+    <div class="meta"><span id="kind">Off air</span><span class="tag" id="category" hidden></span></div>
+    <div id="headline">Press play to start the news wheel.</div>
+    <p id="script"></p>
+    <div id="sources"></div>
+    <div class="controls">
+      <button id="play">Play</button>
+      <button id="skip" class="secondary" disabled>Skip</button>
+      <progress id="prog" value="0" max="1"></progress>
+    </div>
+  </section>
+
+  <h2>On the wheel</h2>
+  <ul id="queue"></ul>
+
+  <p class="hint">Plain stream for VLC / radio apps: <code id="streamUrl"></code></p>
+  <audio id="audio" preload="auto"></audio>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const audio = $("audio");
+let listener = localStorage.getItem("nr_listener");
+if (!listener) { listener = crypto.randomUUID().slice(0, 12); try { localStorage.setItem("nr_listener", listener); } catch {} }
+let current = null, playing = false;
+$("streamUrl").textContent = location.origin + "/stream";
+
+async function next() {
+  if (!playing) return;
+  let item;
+  try { item = await (await fetch(`/api/next?listener=${listener}`)).json(); }
+  catch { setTimeout(next, 5000); return; }
+  current = item;
+  render(item);
+  if (item.type === "idle") { setTimeout(next, (item.retry_after || 10) * 1000); return; }
+  audio.src = item.audio_url;
+  audio.play().catch(() => setTimeout(next, 2000));
+}
+
+function render(item) {
+  $("kind").textContent = { story: "Now playing", station_id: "Station ID", idle: "Waiting for news" }[item.type];
+  $("headline").textContent = item.type === "idle" ? "No fresh stories yet — the editor is working." : item.headline;
+  $("script").textContent = item.script || "";
+  $("sources").textContent = item.sources && item.sources.length ? "Sources: " + item.sources.join(", ") : "";
+  $("category").hidden = !item.category;
+  $("category").textContent = item.category || "";
+  $("skip").disabled = item.type !== "story";
+}
+
+audio.addEventListener("playing", () => {
+  if (current?.type === "story") {
+    fetch(`/api/started?listener=${encodeURIComponent(listener)}&clip_id=${current.id}`, {method: "POST"}).catch(() => {});
+  }
+});
+audio.addEventListener("ended", next);
+audio.addEventListener("timeupdate", () => { $("prog").value = audio.duration ? audio.currentTime / audio.duration : 0; });
+
+$("play").onclick = () => {
+  playing = !playing;
+  $("play").textContent = playing ? "Pause" : "Play";
+  $("hdr").classList.toggle("live", playing);
+  if (playing) { if (audio.src && !audio.ended && audio.currentTime > 0) audio.play(); else next(); }
+  else audio.pause();
+};
+
+$("skip").onclick = async () => {
+  if (current && current.category) {
+    fetch(`/api/skip?listener=${listener}&category=${encodeURIComponent(current.category)}`, { method: "POST" });
+  }
+  audio.pause(); next();
+};
+
+async function refresh() {
+  try {
+    const [st, clips] = await Promise.all([fetch("/api/status").then(r => r.json()), fetch("/api/clips").then(r => r.json())]);
+    $("station").textContent = st.station;
+    document.title = st.station;
+    $("stats").textContent = `${st.clips_active} stories · ${st.articles} articles · ${Math.round(st.audio_seconds_active / 60)} min of audio`;
+    const ul = $("queue"); ul.replaceChildren();
+    for (const c of clips.slice(0, 15)) {
+      const li = document.createElement("li");
+      const p = document.createElement("span"); p.className = "p"; p.textContent = "P" + c.priority;
+      const h = document.createElement("span"); h.textContent = c.headline;
+      const cat = document.createElement("span"); cat.className = "c"; cat.textContent = c.category || "";
+      li.append(p, h, cat); ul.append(li);
+    }
+  } catch {}
+}
+refresh(); setInterval(refresh, 15000);
+</script>
+</body>
+</html>

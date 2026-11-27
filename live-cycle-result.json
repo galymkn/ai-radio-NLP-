@@ -1,0 +1,19 @@
+{
+  "ingest": 117,
+  "cycle": {
+    "fetched": 117,
+    "stored": 117,
+    "clustered": 117,
+    "new_stories": 95,
+    "touched": 95,
+    "clips": 2,
+    "seconds": 18.5
+  },
+  "server": {
+    "status_code": 200,
+    "clips": 2,
+    "next_type": "story",
+    "audio_status": 200,
+    "started_status": 200
+  }
+}

@@ -1,0 +1,68 @@
+# NewsRadio configuration
+station_name: "NewsRadio"
+language: "en"            # language of the broadcast; sources may be in any language
+data_dir: "data"
+
+sources:
+  rss:
+    - { name: "BBC World",     url: "https://feeds.bbci.co.uk/news/world/rss.xml" }
+    - { name: "NPR",           url: "https://feeds.npr.org/1004/rss.xml" }
+    - { name: "The Guardian",  url: "https://www.theguardian.com/world/rss" }
+    - { name: "Al Jazeera",    url: "https://www.aljazeera.com/xml/rss/all.xml" }
+    - { name: "Astana Times",  url: "https://astanatimes.com/feed/" }
+  # Public Telegram channels (read via the public web preview t.me/s/<channel>,
+  # no API keys needed). Replace with your own list.
+  telegram:
+    - "tengrinews"
+    - "bbcrussian"
+    - "rian_ru"
+    - "interfaxonline"
+    - "dwglavnoe"
+
+ingest:
+  telegram_backend: "web"   # web | telethon (requires authorized session)
+  poll_seconds: 300         # how often the worker runs a full cycle (free LLM tier: not too often)
+  max_items_per_feed: 20
+  max_age_hours: 24         # ignore items older than this
+  fetch_fulltext: true      # download article pages and extract text via trafilatura
+  min_text_chars: 80
+
+cluster:
+  embedder: "sbert"         # sbert | hash   (hash = no model download, for tests/offline)
+  model: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+  threshold: 0.72           # cosine similarity to join an existing story — tune on your data
+  window_hours: 48
+
+editor:
+  backend: "gemini"         # gemini | claude | fake   (fake = extractive, no API key)
+  model: "gemini-3.5-flash" # override with EDITOR_MODEL env var; free models are listed in Google AI Studio
+  verify: true              # second LLM pass: drop sentences not supported by sources
+  max_edits_per_cycle: 4    # only for `cycle`/`demo`; the live server edits continuously
+  script_words: "120-180"   # about 45-70 seconds on air
+  priority_sources: ["Astana Times", "@tengrinews"]   # Kazakhstan first
+  min_seconds_between_calls: 6   # stay under the free per-minute limit
+  max_calls_per_day: 200    # own daily cap; when reached, editing waits (counter resets on restart)
+  max_attempts: 3
+  retry_backoff_seconds: 120  # exponential backoff, then failed; retry-failed to reset
+  reedit_cooldown_minutes: 30
+  max_sources_per_story: 6
+  max_chars_per_source: 2500
+
+tts:
+  normalize: false         # Edge reads original numbers; opt in for other backends
+  backend: "edge"           # edge | kokoro | dummy
+  voice: "en-US-AndrewNeural"   # edge voices: `edge-tts --list-voices`; kokoro e.g. "af_heart"
+  rate: "+0%"
+
+wheel:
+  repeat_stories: true     # radio rotation; false = once per listener
+  cooldown_minutes: 20      # don't repeat a clip to the same listener sooner than this
+  half_life_hours: 3        # freshness decay
+  station_id_every: 5       # insert station ID after every N stories (0 = off)
+  fill_silence: true        # never go quiet: replay the oldest clip instead of waiting for the cooldown
+  boost_categories: ["kazakhstan", "central_asia"]
+
+server:
+  host: "0.0.0.0"
+  port: 8000
+  run_worker: true          # run the ingestion/editor/TTS loop inside the server process

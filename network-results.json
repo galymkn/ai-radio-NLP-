@@ -1,0 +1,62 @@
+[
+  {
+    "source": "BBC World",
+    "kind": "rss",
+    "status": 200,
+    "parsed_items": 35
+  },
+  {
+    "source": "NPR",
+    "kind": "rss",
+    "status": 200,
+    "parsed_items": 10
+  },
+  {
+    "source": "The Guardian",
+    "kind": "rss",
+    "status": 200,
+    "parsed_items": 45
+  },
+  {
+    "source": "Al Jazeera",
+    "kind": "rss",
+    "status": 200,
+    "parsed_items": 25
+  },
+  {
+    "source": "Astana Times",
+    "kind": "rss",
+    "status": 200,
+    "parsed_items": 10
+  },
+  {
+    "source": "tengrinews",
+    "kind": "telegram",
+    "status": 200,
+    "parsed_items": 19
+  },
+  {
+    "source": "bbcrussian",
+    "kind": "telegram",
+    "status": 200,
+    "parsed_items": 20
+  },
+  {
+    "source": "rian_ru",
+    "kind": "telegram",
+    "status": 200,
+    "parsed_items": 20
+  },
+  {
+    "source": "interfaxonline",
+    "kind": "telegram",
+    "status": 200,
+    "parsed_items": 20
+  },
+  {
+    "source": "dwglavnoe",
+    "kind": "telegram",
+    "status": 200,
+    "parsed_items": 18
+  }
+]

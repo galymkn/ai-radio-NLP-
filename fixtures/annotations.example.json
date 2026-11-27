@@ -1,0 +1,10 @@
+{
+  "note": "Synthetic format example, NOT an evaluation result. Replace with human labels.",
+  "articles": [
+    {"id": "a", "gold_story": "metro", "predicted_story": 1},
+    {"id": "b", "gold_story": "metro", "predicted_story": 1},
+    {"id": "c", "gold_story": "bank", "predicted_story": 2}
+  ],
+  "sentences": [{"clip_id": 1, "text": "Example claim.", "supported": true}],
+  "broadcasts": [{"clip_id": 1, "published_at": 1000, "broadcast_at": 1120}]
+}
