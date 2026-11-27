@@ -1,0 +1,1976 @@
+[
+  {
+    "id": 1,
+    "url": "https://www.bbc.co.uk/news/articles/cqlymky8kpzjo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1,
+    "split": "train"
+  },
+  {
+    "id": 2,
+    "url": "https://www.bbc.co.uk/news/videos/cvglrz5yr79go?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1,
+    "split": "train"
+  },
+  {
+    "id": 3,
+    "url": "https://www.bbc.co.uk/news/articles/cmlyd76kyx44o?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 3,
+    "split": "validation"
+  },
+  {
+    "id": 4,
+    "url": "https://www.bbc.co.uk/news/articles/cm8x0ve4yd7wo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 4,
+    "split": "train"
+  },
+  {
+    "id": 5,
+    "url": "https://www.bbc.co.uk/news/articles/c9gklryvj24do?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 5,
+    "split": "validation"
+  },
+  {
+    "id": 6,
+    "url": "https://www.bbc.co.uk/news/articles/cmly7jve72r2o?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 6,
+    "split": "train"
+  },
+  {
+    "id": 7,
+    "url": "https://www.bbc.co.uk/news/articles/c9m2jke85xzxo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 7,
+    "split": "train"
+  },
+  {
+    "id": 8,
+    "url": "https://www.bbc.co.uk/news/articles/cmp3vk6vr44po?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 8,
+    "split": "train"
+  },
+  {
+    "id": 9,
+    "url": "https://www.bbc.co.uk/news/articles/c61wr87wyg5wo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 9,
+    "split": "train"
+  },
+  {
+    "id": 10,
+    "url": "https://www.bbc.co.uk/news/articles/crx209kwk4kzo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 10,
+    "split": "validation"
+  },
+  {
+    "id": 11,
+    "url": "https://www.bbc.co.uk/news/articles/cqvg2n4mzl1jo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 11,
+    "split": "train"
+  },
+  {
+    "id": 12,
+    "url": "https://www.bbc.co.uk/news/articles/ckm2mz3prq77o?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 12,
+    "split": "validation"
+  },
+  {
+    "id": 13,
+    "url": "https://www.bbc.co.uk/news/articles/cmde1zr0nlyro?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 13,
+    "split": "train"
+  },
+  {
+    "id": 14,
+    "url": "https://www.bbc.co.uk/news/articles/cwz0k90rgpm8o?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 14,
+    "split": "train"
+  },
+  {
+    "id": 15,
+    "url": "https://www.bbc.co.uk/news/articles/c98r7p65edvgo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 15,
+    "split": "train"
+  },
+  {
+    "id": 16,
+    "url": "https://www.bbc.co.uk/news/articles/c893r9ke5p97o?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 16,
+    "split": "train"
+  },
+  {
+    "id": 17,
+    "url": "https://www.bbc.co.uk/news/articles/cqwy4377yxnlo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 17,
+    "split": "train"
+  },
+  {
+    "id": 18,
+    "url": "https://www.bbc.co.uk/news/articles/cwp836l8n1jgo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 18,
+    "split": "train"
+  },
+  {
+    "id": 19,
+    "url": "https://www.bbc.co.uk/news/articles/cwkgr38l2g9yo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 19,
+    "split": "validation"
+  },
+  {
+    "id": 20,
+    "url": "https://www.bbc.co.uk/news/articles/cqy7rn30v314o?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 20,
+    "split": "validation"
+  },
+  {
+    "id": 21,
+    "url": "https://www.npr.org/2026/11/26/g-s1-155957/congo-ebola-responders",
+    "source": "NPR",
+    "event": 21,
+    "split": "train"
+  },
+  {
+    "id": 22,
+    "url": "https://www.npr.org/2026/11/26/g-s1-155955/north-korea-kim-nuclear-weapons-trump",
+    "source": "NPR",
+    "event": 22,
+    "split": "train"
+  },
+  {
+    "id": 24,
+    "url": "https://www.theguardian.com/world/2026/nov/26/lana-nusseibeh-uae-sudan-un-secretary-general",
+    "source": "The Guardian",
+    "event": 24,
+    "split": "validation"
+  },
+  {
+    "id": 25,
+    "url": "https://www.theguardian.com/world/2026/nov/25/people-killed-fuel-tanker-crash-ignites-large-fire-cairo-highway",
+    "source": "The Guardian",
+    "event": 20,
+    "split": "validation"
+  },
+  {
+    "id": 26,
+    "url": "https://www.theguardian.com/world/2026/nov/25/hostages-freed-colombia-security-forces-storm-cartagena-supermarket",
+    "source": "The Guardian",
+    "event": 26,
+    "split": "train"
+  },
+  {
+    "id": 27,
+    "url": "https://www.theguardian.com/world/2026/nov/25/lululemon-founder-comments-canada-womens-leadership-conference",
+    "source": "The Guardian",
+    "event": 27,
+    "split": "train"
+  },
+  {
+    "id": 28,
+    "url": "https://www.theguardian.com/us-news/2026/nov/26/brazil-china-react-to-new-trump-tariffs-threat",
+    "source": "The Guardian",
+    "event": 16,
+    "split": "train"
+  },
+  {
+    "id": 29,
+    "url": "https://www.theguardian.com/world/2026/nov/26/japanese-journalist-yuki-imai-detained-in-russia-wife-pleads-his-release",
+    "source": "The Guardian",
+    "event": 29,
+    "split": "train"
+  },
+  {
+    "id": 30,
+    "url": "https://www.theguardian.com/australia-news/2026/nov/27/beau-lamarre-condon-service-weapon-murder-police-recruiters-ntwnfb",
+    "source": "The Guardian",
+    "event": 30,
+    "split": "train"
+  },
+  {
+    "id": 31,
+    "url": "https://www.theguardian.com/australia-news/2026/nov/27/one-nation-pauline-hanson-gina-rinehart-aec-donations-ntwnfb",
+    "source": "The Guardian",
+    "event": 31,
+    "split": "validation"
+  },
+  {
+    "id": 32,
+    "url": "https://www.theguardian.com/australia-news/2026/nov/27/sydney-fire-ants-outbreak-biosecurity-experts-ignored",
+    "source": "The Guardian",
+    "event": 32,
+    "split": "train"
+  },
+  {
+    "id": 33,
+    "url": "https://www.theguardian.com/australia-news/2026/nov/27/hugh-jackman-woodside-gas-project-wa-reef-murray-watt",
+    "source": "The Guardian",
+    "event": 33,
+    "split": "validation"
+  },
+  {
+    "id": 34,
+    "url": "https://www.theguardian.com/australia-news/2026/nov/26/aged-care-home-support-program-algorithm-tool-inquiry-report",
+    "source": "The Guardian",
+    "event": 34,
+    "split": "validation"
+  },
+  {
+    "id": 35,
+    "url": "https://www.aljazeera.com/news/2026/11/26/can-trump-continue-with-iran-war-despite-funding-restrictions?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 35,
+    "split": "train"
+  },
+  {
+    "id": 36,
+    "url": "https://www.aljazeera.com/news/2026/11/26/how-an-oil-feud-is-deepening-rift-between-baghdad-and-iraqs-kurdish-region?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 36,
+    "split": "train"
+  },
+  {
+    "id": 37,
+    "url": "https://www.aljazeera.com/news/2026/11/26/inside-liberland-the-crypto-country-few-have-heard-of?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 37,
+    "split": "validation"
+  },
+  {
+    "id": 38,
+    "url": "https://www.aljazeera.com/news/2026/11/26/haftar-meets-erdogan-can-turkiye-reunify-libya-as-it-courts-rival-sides?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 38,
+    "split": "train"
+  },
+  {
+    "id": 39,
+    "url": "https://www.aljazeera.com/video/centre-stage/2026/11/26/are-we-ready-to-live-longer-centre-stage?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 39,
+    "split": "validation"
+  },
+  {
+    "id": 40,
+    "url": "https://www.aljazeera.com/news/2026/11/26/jordan-parliament-debates-antiterror-law-after-deadly-karak-church-attack?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 40,
+    "split": "train"
+  },
+  {
+    "id": 41,
+    "url": "https://www.aljazeera.com/economy/2026/11/26/is-ubi-the-solution-to-mass-unemployment-in-an-ai-economy?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 41,
+    "split": "validation"
+  },
+  {
+    "id": 42,
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/11/26/film-shows-testimonies-of-international-doctors-amid-gaza-genocide?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 42,
+    "split": "train"
+  },
+  {
+    "id": 43,
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/11/26/eyewitnesses-describe-scenes-of-egypts-deadly-vehicle-fire?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 20,
+    "split": "validation"
+  },
+  {
+    "id": 44,
+    "url": "https://www.aljazeera.com/sports/2026/11/26/fifa-says-personal-and-business-information-stolen-in-cyberattack?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 44,
+    "split": "train"
+  },
+  {
+    "id": 45,
+    "url": "https://www.aljazeera.com/video/money-works/2026/11/26/with-the-rise-of-ai-are-we-close-to-having-universal-basic-income?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 41,
+    "split": "validation"
+  },
+  {
+    "id": 46,
+    "url": "https://www.aljazeera.com/news/2026/11/26/symbolic-why-did-uk-sanction-yemens-houthis-amid-attacks-on-saudi?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 46,
+    "split": "validation"
+  },
+  {
+    "id": 47,
+    "url": "https://www.aljazeera.com/news/2026/11/26/james-fergie-chambers-us-trying-to-cast-antiwar-ideas-as-extremist?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 47,
+    "split": "train"
+  },
+  {
+    "id": 48,
+    "url": "https://www.aljazeera.com/sports/2026/11/26/lebron-james-nba-oldest-player-triple-double-philadelphia-76ers?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 48,
+    "split": "train"
+  },
+  {
+    "id": 49,
+    "url": "https://www.aljazeera.com/news/2026/11/26/iraq-denies-reports-of-troop-movements-towards-kurdish-region?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 49,
+    "split": "train"
+  },
+  {
+    "id": 50,
+    "url": "https://www.aljazeera.com/news/2026/11/26/highway-explosion-in-giza-how-deadly-are-egypts-roads-and-railways?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 20,
+    "split": "validation"
+  },
+  {
+    "id": 51,
+    "url": "https://www.aljazeera.com/news/2026/11/26/proscribing-free-speech-why-a-jewish-group-is-challenging-uks-hamas-ban?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 51,
+    "split": "validation"
+  },
+  {
+    "id": 52,
+    "url": "https://www.aljazeera.com/news/2026/11/26/are-trumps-tariffs-aimed-at-securing-us-friendly-trade-deals?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 16,
+    "split": "train"
+  },
+  {
+    "id": 53,
+    "url": "https://www.aljazeera.com/economy/2026/11/26/thanksgiving-dinner-costs-rise-putting-pressure-on-us-households?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 53,
+    "split": "train"
+  },
+  {
+    "id": 54,
+    "url": "https://www.aljazeera.com/sports/2026/11/26/palestine-national-football-team-coach-suffering-hope?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 54,
+    "split": "validation"
+  },
+  {
+    "id": 55,
+    "url": "https://astanatimes.com/2026/11/kazakhstans-snow-leopard-population-nearly-doubles-since-early-2000s/",
+    "source": "Astana Times",
+    "event": 55,
+    "split": "train"
+  },
+  {
+    "id": 56,
+    "url": "https://astanatimes.com/2026/11/kazakhstan-china-explore-joint-energy-research-center-and-grid-projects/",
+    "source": "Astana Times",
+    "event": 56,
+    "split": "train"
+  },
+  {
+    "id": 57,
+    "url": "https://astanatimes.com/2026/11/kazakhstans-agricultural-exports-rise-34-7-as-processed-products-gain-ground/",
+    "source": "Astana Times",
+    "event": 57,
+    "split": "train"
+  },
+  {
+    "id": 58,
+    "url": "https://astanatimes.com/2026/11/kazakhstans-infrastructure-ambitions-put-investment-climate-in-focus-pm-says/",
+    "source": "Astana Times",
+    "event": 58,
+    "split": "validation"
+  },
+  {
+    "id": 59,
+    "url": "https://astanatimes.com/2026/11/kazakhstans-first-ai-assisted-bill-targets-childrens-online-safety/",
+    "source": "Astana Times",
+    "event": 59,
+    "split": "train"
+  },
+  {
+    "id": 60,
+    "url": "https://astanatimes.com/2026/11/person-next-to-you-may-need-help-kazakhstan-launches-anti-violence-campaign/",
+    "source": "Astana Times",
+    "event": 60,
+    "split": "validation"
+  },
+  {
+    "id": 61,
+    "url": "https://astanatimes.com/2026/11/tokayev-putin-focus-on-ai-cooperation-as-bilateral-trade-nears-30-billion/",
+    "source": "Astana Times",
+    "event": 61,
+    "split": "train"
+  },
+  {
+    "id": 62,
+    "url": "https://astanatimes.com/2026/11/kazakhstan-ranks-28th-among-worlds-largest-steel-producers/",
+    "source": "Astana Times",
+    "event": 62,
+    "split": "train"
+  },
+  {
+    "id": 63,
+    "url": "https://astanatimes.com/2026/11/asia-and-pacific-must-face-future-as-one/",
+    "source": "Astana Times",
+    "event": 63,
+    "split": "train"
+  },
+  {
+    "id": 64,
+    "url": "https://t.me/tengrinews/27948",
+    "source": "@tengrinews",
+    "event": 64,
+    "split": "train"
+  },
+  {
+    "id": 66,
+    "url": "https://t.me/tengrinews/27950",
+    "source": "@tengrinews",
+    "event": 66,
+    "split": "train"
+  },
+  {
+    "id": 67,
+    "url": "https://t.me/tengrinews/27951",
+    "source": "@tengrinews",
+    "event": 67,
+    "split": "train"
+  },
+  {
+    "id": 68,
+    "url": "https://t.me/tengrinews/27952",
+    "source": "@tengrinews",
+    "event": 68,
+    "split": "validation"
+  },
+  {
+    "id": 69,
+    "url": "https://t.me/tengrinews/27953",
+    "source": "@tengrinews",
+    "event": 69,
+    "split": "validation"
+  },
+  {
+    "id": 70,
+    "url": "https://t.me/tengrinews/27954",
+    "source": "@tengrinews",
+    "event": 70,
+    "split": "train"
+  },
+  {
+    "id": 71,
+    "url": "https://t.me/tengrinews/27955",
+    "source": "@tengrinews",
+    "event": 71,
+    "split": "train"
+  },
+  {
+    "id": 72,
+    "url": "https://t.me/bbcrussian/101847",
+    "source": "@bbcrussian",
+    "event": 72,
+    "split": "train"
+  },
+  {
+    "id": 73,
+    "url": "https://t.me/bbcrussian/101848",
+    "source": "@bbcrussian",
+    "event": 73,
+    "split": "train"
+  },
+  {
+    "id": 74,
+    "url": "https://t.me/bbcrussian/101849",
+    "source": "@bbcrussian",
+    "event": 74,
+    "split": "train"
+  },
+  {
+    "id": 75,
+    "url": "https://t.me/bbcrussian/101850",
+    "source": "@bbcrussian",
+    "event": 18,
+    "split": "train"
+  },
+  {
+    "id": 76,
+    "url": "https://t.me/bbcrussian/101851",
+    "source": "@bbcrussian",
+    "event": 76,
+    "split": "train"
+  },
+  {
+    "id": 77,
+    "url": "https://t.me/bbcrussian/101852",
+    "source": "@bbcrussian",
+    "event": 77,
+    "split": "train"
+  },
+  {
+    "id": 78,
+    "url": "https://t.me/bbcrussian/101853",
+    "source": "@bbcrussian",
+    "event": 78,
+    "split": "train"
+  },
+  {
+    "id": 79,
+    "url": "https://t.me/bbcrussian/101854",
+    "source": "@bbcrussian",
+    "event": 20,
+    "split": "validation"
+  },
+  {
+    "id": 80,
+    "url": "https://t.me/bbcrussian/101855",
+    "source": "@bbcrussian",
+    "event": 8,
+    "split": "train"
+  },
+  {
+    "id": 81,
+    "url": "https://t.me/bbcrussian/101856",
+    "source": "@bbcrussian",
+    "event": 9,
+    "split": "train"
+  },
+  {
+    "id": 82,
+    "url": "https://t.me/bbcrussian/101857",
+    "source": "@bbcrussian",
+    "event": 82,
+    "split": "train"
+  },
+  {
+    "id": 83,
+    "url": "https://t.me/bbcrussian/101858",
+    "source": "@bbcrussian",
+    "event": 83,
+    "split": "train"
+  },
+  {
+    "id": 84,
+    "url": "https://t.me/bbcrussian/101859",
+    "source": "@bbcrussian",
+    "event": 84,
+    "split": "train"
+  },
+  {
+    "id": 85,
+    "url": "https://t.me/bbcrussian/101860",
+    "source": "@bbcrussian",
+    "event": 85,
+    "split": "train"
+  },
+  {
+    "id": 86,
+    "url": "https://t.me/bbcrussian/101861",
+    "source": "@bbcrussian",
+    "event": 85,
+    "split": "train"
+  },
+  {
+    "id": 87,
+    "url": "https://t.me/bbcrussian/101862",
+    "source": "@bbcrussian",
+    "event": 87,
+    "split": "validation"
+  },
+  {
+    "id": 88,
+    "url": "https://t.me/bbcrussian/101863",
+    "source": "@bbcrussian",
+    "event": 74,
+    "split": "train"
+  },
+  {
+    "id": 89,
+    "url": "https://t.me/bbcrussian/101864",
+    "source": "@bbcrussian",
+    "event": 4,
+    "split": "train"
+  },
+  {
+    "id": 90,
+    "url": "https://t.me/bbcrussian/101865",
+    "source": "@bbcrussian",
+    "event": 90,
+    "split": "train"
+  },
+  {
+    "id": 91,
+    "url": "https://t.me/bbcrussian/101866",
+    "source": "@bbcrussian",
+    "event": 91,
+    "split": "train"
+  },
+  {
+    "id": 92,
+    "url": "https://t.me/rian_ru/350481",
+    "source": "@rian_ru",
+    "event": 92,
+    "split": "validation"
+  },
+  {
+    "id": 93,
+    "url": "https://t.me/rian_ru/350482",
+    "source": "@rian_ru",
+    "event": 93,
+    "split": "train"
+  },
+  {
+    "id": 94,
+    "url": "https://t.me/rian_ru/350483",
+    "source": "@rian_ru",
+    "event": 94,
+    "split": "train"
+  },
+  {
+    "id": 95,
+    "url": "https://t.me/rian_ru/350484",
+    "source": "@rian_ru",
+    "event": 95,
+    "split": "train"
+  },
+  {
+    "id": 96,
+    "url": "https://t.me/rian_ru/350485",
+    "source": "@rian_ru",
+    "event": 96,
+    "split": "train"
+  },
+  {
+    "id": 97,
+    "url": "https://t.me/rian_ru/350486",
+    "source": "@rian_ru",
+    "event": 97,
+    "split": "train"
+  },
+  {
+    "id": 98,
+    "url": "https://t.me/rian_ru/350487",
+    "source": "@rian_ru",
+    "event": 98,
+    "split": "train"
+  },
+  {
+    "id": 99,
+    "url": "https://t.me/rian_ru/350488",
+    "source": "@rian_ru",
+    "event": 99,
+    "split": "validation"
+  },
+  {
+    "id": 100,
+    "url": "https://t.me/rian_ru/350489",
+    "source": "@rian_ru",
+    "event": 100,
+    "split": "train"
+  },
+  {
+    "id": 101,
+    "url": "https://t.me/rian_ru/350490",
+    "source": "@rian_ru",
+    "event": 101,
+    "split": "train"
+  },
+  {
+    "id": 102,
+    "url": "https://t.me/rian_ru/350491",
+    "source": "@rian_ru",
+    "event": 102,
+    "split": "train"
+  },
+  {
+    "id": 103,
+    "url": "https://t.me/rian_ru/350492",
+    "source": "@rian_ru",
+    "event": 103,
+    "split": "validation"
+  },
+  {
+    "id": 104,
+    "url": "https://t.me/rian_ru/350493",
+    "source": "@rian_ru",
+    "event": 104,
+    "split": "train"
+  },
+  {
+    "id": 105,
+    "url": "https://t.me/rian_ru/350494",
+    "source": "@rian_ru",
+    "event": 103,
+    "split": "validation"
+  },
+  {
+    "id": 106,
+    "url": "https://t.me/rian_ru/350495",
+    "source": "@rian_ru",
+    "event": 106,
+    "split": "train"
+  },
+  {
+    "id": 107,
+    "url": "https://t.me/rian_ru/350496",
+    "source": "@rian_ru",
+    "event": 103,
+    "split": "validation"
+  },
+  {
+    "id": 108,
+    "url": "https://t.me/rian_ru/350497",
+    "source": "@rian_ru",
+    "event": 108,
+    "split": "validation"
+  },
+  {
+    "id": 109,
+    "url": "https://t.me/rian_ru/350498",
+    "source": "@rian_ru",
+    "event": 109,
+    "split": "validation"
+  },
+  {
+    "id": 110,
+    "url": "https://t.me/rian_ru/350499",
+    "source": "@rian_ru",
+    "event": 110,
+    "split": "train"
+  },
+  {
+    "id": 111,
+    "url": "https://t.me/rian_ru/350500",
+    "source": "@rian_ru",
+    "event": 111,
+    "split": "validation"
+  },
+  {
+    "id": 112,
+    "url": "https://t.me/interfaxonline/82164",
+    "source": "@interfaxonline",
+    "event": 112,
+    "split": "train"
+  },
+  {
+    "id": 113,
+    "url": "https://t.me/interfaxonline/82165",
+    "source": "@interfaxonline",
+    "event": 113,
+    "split": "validation"
+  },
+  {
+    "id": 114,
+    "url": "https://t.me/interfaxonline/82166",
+    "source": "@interfaxonline",
+    "event": 114,
+    "split": "train"
+  },
+  {
+    "id": 115,
+    "url": "https://t.me/interfaxonline/82167",
+    "source": "@interfaxonline",
+    "event": 103,
+    "split": "validation"
+  },
+  {
+    "id": 116,
+    "url": "https://t.me/interfaxonline/82168",
+    "source": "@interfaxonline",
+    "event": 116,
+    "split": "train"
+  },
+  {
+    "id": 117,
+    "url": "https://t.me/interfaxonline/82169",
+    "source": "@interfaxonline",
+    "event": 117,
+    "split": "validation"
+  },
+  {
+    "id": 118,
+    "url": "https://t.me/interfaxonline/82170",
+    "source": "@interfaxonline",
+    "event": 118,
+    "split": "train"
+  },
+  {
+    "id": 119,
+    "url": "https://t.me/interfaxonline/82171",
+    "source": "@interfaxonline",
+    "event": 19,
+    "split": "validation"
+  },
+  {
+    "id": 120,
+    "url": "https://t.me/interfaxonline/82172",
+    "source": "@interfaxonline",
+    "event": 120,
+    "split": "train"
+  },
+  {
+    "id": 121,
+    "url": "https://t.me/interfaxonline/82173",
+    "source": "@interfaxonline",
+    "event": 121,
+    "split": "train"
+  },
+  {
+    "id": 122,
+    "url": "https://t.me/interfaxonline/82174",
+    "source": "@interfaxonline",
+    "event": 122,
+    "split": "validation"
+  },
+  {
+    "id": 123,
+    "url": "https://t.me/interfaxonline/82175",
+    "source": "@interfaxonline",
+    "event": 123,
+    "split": "train"
+  },
+  {
+    "id": 124,
+    "url": "https://t.me/interfaxonline/82176",
+    "source": "@interfaxonline",
+    "event": 124,
+    "split": "validation"
+  },
+  {
+    "id": 125,
+    "url": "https://t.me/interfaxonline/82177",
+    "source": "@interfaxonline",
+    "event": 125,
+    "split": "validation"
+  },
+  {
+    "id": 126,
+    "url": "https://t.me/interfaxonline/82178",
+    "source": "@interfaxonline",
+    "event": 126,
+    "split": "validation"
+  },
+  {
+    "id": 127,
+    "url": "https://t.me/interfaxonline/82179",
+    "source": "@interfaxonline",
+    "event": 127,
+    "split": "train"
+  },
+  {
+    "id": 128,
+    "url": "https://t.me/interfaxonline/82180",
+    "source": "@interfaxonline",
+    "event": 128,
+    "split": "train"
+  },
+  {
+    "id": 129,
+    "url": "https://t.me/interfaxonline/82181",
+    "source": "@interfaxonline",
+    "event": 129,
+    "split": "validation"
+  },
+  {
+    "id": 130,
+    "url": "https://t.me/interfaxonline/82182",
+    "source": "@interfaxonline",
+    "event": 90,
+    "split": "train"
+  },
+  {
+    "id": 131,
+    "url": "https://t.me/interfaxonline/82183",
+    "source": "@interfaxonline",
+    "event": 111,
+    "split": "validation"
+  },
+  {
+    "id": 132,
+    "url": "https://t.me/dwglavnoe/70924",
+    "source": "@dwglavnoe",
+    "event": 132,
+    "split": "train"
+  },
+  {
+    "id": 133,
+    "url": "https://t.me/dwglavnoe/70925",
+    "source": "@dwglavnoe",
+    "event": 133,
+    "split": "train"
+  },
+  {
+    "id": 134,
+    "url": "https://t.me/dwglavnoe/70926",
+    "source": "@dwglavnoe",
+    "event": 134,
+    "split": "train"
+  },
+  {
+    "id": 135,
+    "url": "https://t.me/dwglavnoe/70927",
+    "source": "@dwglavnoe",
+    "event": 135,
+    "split": "validation"
+  },
+  {
+    "id": 136,
+    "url": "https://t.me/dwglavnoe/70928",
+    "source": "@dwglavnoe",
+    "event": 73,
+    "split": "train"
+  },
+  {
+    "id": 138,
+    "url": "https://t.me/dwglavnoe/70932",
+    "source": "@dwglavnoe",
+    "event": 83,
+    "split": "train"
+  },
+  {
+    "id": 139,
+    "url": "https://t.me/dwglavnoe/70933",
+    "source": "@dwglavnoe",
+    "event": 139,
+    "split": "validation"
+  },
+  {
+    "id": 140,
+    "url": "https://t.me/dwglavnoe/70934",
+    "source": "@dwglavnoe",
+    "event": 140,
+    "split": "train"
+  },
+  {
+    "id": 141,
+    "url": "https://t.me/dwglavnoe/70936",
+    "source": "@dwglavnoe",
+    "event": 141,
+    "split": "train"
+  },
+  {
+    "id": 142,
+    "url": "https://t.me/dwglavnoe/70937",
+    "source": "@dwglavnoe",
+    "event": 72,
+    "split": "train"
+  },
+  {
+    "id": 143,
+    "url": "https://t.me/dwglavnoe/70938",
+    "source": "@dwglavnoe",
+    "event": 143,
+    "split": "train"
+  },
+  {
+    "id": 144,
+    "url": "https://t.me/dwglavnoe/70939",
+    "source": "@dwglavnoe",
+    "event": 144,
+    "split": "train"
+  },
+  {
+    "id": 145,
+    "url": "https://t.me/dwglavnoe/70940",
+    "source": "@dwglavnoe",
+    "event": 145,
+    "split": "train"
+  },
+  {
+    "id": 146,
+    "url": "https://t.me/dwglavnoe/70941",
+    "source": "@dwglavnoe",
+    "event": 146,
+    "split": "train"
+  },
+  {
+    "id": 147,
+    "url": "https://t.me/dwglavnoe/70942",
+    "source": "@dwglavnoe",
+    "event": 74,
+    "split": "train"
+  },
+  {
+    "id": 148,
+    "url": "https://t.me/dwglavnoe/70943",
+    "source": "@dwglavnoe",
+    "event": 148,
+    "split": "train"
+  },
+  {
+    "id": 149,
+    "url": "https://t.me/dwglavnoe/70944",
+    "source": "@dwglavnoe",
+    "event": 18,
+    "split": "train"
+  },
+  {
+    "id": 1001,
+    "url": "https://www.bbc.co.uk/news/articles/c820q9wgrpyyo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1001,
+    "split": "test"
+  },
+  {
+    "id": 1002,
+    "url": "https://www.bbc.co.uk/news/articles/cre3dj5n7dpwo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1002,
+    "split": "test"
+  },
+  {
+    "id": 1003,
+    "url": "https://www.bbc.co.uk/news/articles/ckr5gr4g8gn5o?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1003,
+    "split": "test"
+  },
+  {
+    "id": 1004,
+    "url": "https://www.bbc.co.uk/news/articles/c69q8yjj1v0po?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1004,
+    "split": "test"
+  },
+  {
+    "id": 1005,
+    "url": "https://www.bbc.co.uk/news/articles/ckr5grlq78n9o?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1005,
+    "split": "test"
+  },
+  {
+    "id": 1006,
+    "url": "https://www.bbc.co.uk/news/articles/ck053e1d3ly1o?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1006,
+    "split": "test"
+  },
+  {
+    "id": 1007,
+    "url": "https://www.bbc.co.uk/sport/football/articles/c69q8y5x03ywo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1007,
+    "split": "test"
+  },
+  {
+    "id": 1008,
+    "url": "https://www.bbc.co.uk/news/articles/cw074p95ye5do?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1008,
+    "split": "test"
+  },
+  {
+    "id": 1009,
+    "url": "https://www.bbc.co.uk/news/articles/cm5y1380q3vgo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1009,
+    "split": "test"
+  },
+  {
+    "id": 1010,
+    "url": "https://www.bbc.co.uk/news/articles/c58j4pw9xjrlo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1010,
+    "split": "test"
+  },
+  {
+    "id": 1011,
+    "url": "https://www.bbc.co.uk/news/articles/cw4gnm3m9deno?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1011,
+    "split": "test"
+  },
+  {
+    "id": 1012,
+    "url": "https://www.bbc.co.uk/news/articles/crx209ekq5xdo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1012,
+    "split": "test"
+  },
+  {
+    "id": 1013,
+    "url": "https://www.bbc.co.uk/news/articles/cq4gnj2ldkyzo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1013,
+    "split": "test"
+  },
+  {
+    "id": 1014,
+    "url": "https://www.bbc.co.uk/news/articles/cm879e5yxjq5o?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1014,
+    "split": "test"
+  },
+  {
+    "id": 1015,
+    "url": "https://www.bbc.co.uk/news/videos/cmvg23djw8v9o?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1015,
+    "split": "test"
+  },
+  {
+    "id": 1016,
+    "url": "https://www.bbc.co.uk/news/videos/cq808d704m22o?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1002,
+    "split": "test"
+  },
+  {
+    "id": 1017,
+    "url": "https://www.bbc.co.uk/news/videos/cm9309nwk7x9o?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1001,
+    "split": "test"
+  },
+  {
+    "id": 1018,
+    "url": "https://www.bbc.co.uk/news/videos/cm9w9y8947xqo?at_medium=RSS&at_campaign=rss",
+    "source": "BBC World",
+    "event": 1018,
+    "split": "test"
+  },
+  {
+    "id": 1021,
+    "url": "https://www.npr.org/2026/11/27/g-s1-155990/strobe-talbott-obit",
+    "source": "NPR",
+    "event": 1021,
+    "split": "test"
+  },
+  {
+    "id": 1022,
+    "url": "https://www.npr.org/2026/11/25/nx-s1-6048614/thanksgiving-liberia-gratitude-prayer",
+    "source": "NPR",
+    "event": 1022,
+    "split": "test"
+  },
+  {
+    "id": 1025,
+    "url": "https://www.npr.org/2026/11/25/nx-s1-6051429/mount-kilimanjaro-africa-tanzania",
+    "source": "NPR",
+    "event": 1025,
+    "split": "test"
+  },
+  {
+    "id": 1026,
+    "url": "https://www.theguardian.com/world/2026/nov/27/mad-about-mara-the-diy-dance-movement-helping-young-nigerians-escape-the-daily-grind",
+    "source": "The Guardian",
+    "event": 1026,
+    "split": "test"
+  },
+  {
+    "id": 1027,
+    "url": "https://www.theguardian.com/environment/2026/nov/25/swiss-tourist-killed-british-americans-injured-elephants-cameroon",
+    "source": "The Guardian",
+    "event": 1027,
+    "split": "test"
+  },
+  {
+    "id": 1028,
+    "url": "https://www.theguardian.com/uk-news/2026/nov/25/sri-lanka-asylum-seeker-convicted-sexual-assault-uk-kills-himself-eswatini",
+    "source": "The Guardian",
+    "event": 1028,
+    "split": "test"
+  },
+  {
+    "id": 1030,
+    "url": "https://www.theguardian.com/us-news/2026/nov/24/kilmar-abrego-garcia-leaves-us",
+    "source": "The Guardian",
+    "event": 1030,
+    "split": "test"
+  },
+  {
+    "id": 1031,
+    "url": "https://www.theguardian.com/world/2026/nov/24/canada-sovereign-nation-us-relations-defence-pentagon-memo",
+    "source": "The Guardian",
+    "event": 1031,
+    "split": "test"
+  },
+  {
+    "id": 1032,
+    "url": "https://www.theguardian.com/world/2026/nov/27/new-zealand-nz-election-2026-final-results",
+    "source": "The Guardian",
+    "event": 1032,
+    "split": "test"
+  },
+  {
+    "id": 1033,
+    "url": "https://www.theguardian.com/world/2026/nov/27/threat-from-china-looms-large-over-taiwan-local-elections",
+    "source": "The Guardian",
+    "event": 1033,
+    "split": "test"
+  },
+  {
+    "id": 1034,
+    "url": "https://www.theguardian.com/science/2026/nov/25/china-sends-first-pakistani-astronaut-into-space",
+    "source": "The Guardian",
+    "event": 1034,
+    "split": "test"
+  },
+  {
+    "id": 1035,
+    "url": "https://www.theguardian.com/australia-news/2026/nov/28/jess-wilson-melbourne-sewage-plants-privatisation-risks-water-and-wetlands",
+    "source": "The Guardian",
+    "event": 1035,
+    "split": "test"
+  },
+  {
+    "id": 1036,
+    "url": "https://www.theguardian.com/australia-news/2026/nov/28/vic-election-labor-faces-electoral-wipeout-as-voters-turn-to-liberals-and-one-nation-ntwnfb",
+    "source": "The Guardian",
+    "event": 1036,
+    "split": "test"
+  },
+  {
+    "id": 1037,
+    "url": "https://www.theguardian.com/australia-news/2026/nov/28/nsw-labor-is-trampling-over-party-principles-with-preselections-by-captains-call-members-say",
+    "source": "The Guardian",
+    "event": 1037,
+    "split": "test"
+  },
+  {
+    "id": 1038,
+    "url": "https://www.theguardian.com/australia-news/2026/nov/27/crisis-in-empathy-death-in-custody-of-aboriginal-man-tj-denniss-was-preventable-says-nsw-coroner-ntwnfb",
+    "source": "The Guardian",
+    "event": 1038,
+    "split": "test"
+  },
+  {
+    "id": 1039,
+    "url": "https://www.theguardian.com/australia-news/2026/nov/27/grace-tame-responds-former-murdoch-executive-nephew-rape-comment-ntwnfb",
+    "source": "The Guardian",
+    "event": 1005,
+    "split": "test"
+  },
+  {
+    "id": 1040,
+    "url": "https://www.aljazeera.com/news/2026/11/27/why-is-israel-celebrating-costa-ricas-ban-on-francesca-albanese?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1040,
+    "split": "test"
+  },
+  {
+    "id": 1041,
+    "url": "https://www.aljazeera.com/sports/2026/11/27/why-did-georgian-police-clash-with-turkish-football-fans-over-palestine?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1041,
+    "split": "test"
+  },
+  {
+    "id": 1042,
+    "url": "https://www.aljazeera.com/news/2026/11/27/eisenkot-navigates-tricky-waters-as-he-tests-power-sharing-with-netanyahu?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1042,
+    "split": "test"
+  },
+  {
+    "id": 1043,
+    "url": "https://www.aljazeera.com/news/2026/11/27/famine-expect-to-rise-due-to-global-conflict-el-nino-warns-un?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1043,
+    "split": "test"
+  },
+  {
+    "id": 1044,
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/11/27/sentence-served-still-detained-palestinian-families-waiting-for-reunions?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1044,
+    "split": "test"
+  },
+  {
+    "id": 1045,
+    "url": "https://www.aljazeera.com/sports/2026/11/27/englands-overton-takes-5-12-as-australia-bowled-out-for-record-low-in-t20?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1045,
+    "split": "test"
+  },
+  {
+    "id": 1047,
+    "url": "https://www.aljazeera.com/sports/2026/11/27/european-football-violence-fuels-concern-as-marseille-far-right-claim-made?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1007,
+    "split": "test"
+  },
+  {
+    "id": 1048,
+    "url": "https://www.aljazeera.com/news/2026/11/27/saudi-strike-kills-11-civilians-in-yemens-taiz-houthi-media?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1048,
+    "split": "test"
+  },
+  {
+    "id": 1049,
+    "url": "https://www.aljazeera.com/news/2026/11/27/italians-killed-in-kuwait-why-is-iran-denying-responsibility?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1049,
+    "split": "test"
+  },
+  {
+    "id": 1050,
+    "url": "https://www.aljazeera.com/news/2026/11/27/russias-hybrid-war-on-europe-evolving-but-failing-iiss?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1050,
+    "split": "test"
+  },
+  {
+    "id": 1051,
+    "url": "https://www.aljazeera.com/features/2026/11/27/old-wounds-reopen-as-kyrgyzstans-osh-embraces-a-new-urban-project?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1051,
+    "split": "test"
+  },
+  {
+    "id": 1052,
+    "url": "https://www.aljazeera.com/opinions/2026/11/27/what-spains-election-means-for-morocco?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1052,
+    "split": "test"
+  },
+  {
+    "id": 1053,
+    "url": "https://www.aljazeera.com/news/2026/11/27/israeli-attacks-on-women-and-girls-meant-to-destroy-life-in-gaza-amnesty?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1053,
+    "split": "test"
+  },
+  {
+    "id": 1054,
+    "url": "https://www.aljazeera.com/sports/2026/11/27/tyson-furys-wife-backtracks-on-claim-boxer-suffers-from-schizophrenia?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1054,
+    "split": "test"
+  },
+  {
+    "id": 1055,
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/11/27/27-11-sv-pakistan-viral-cricket-catch?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1055,
+    "split": "test"
+  },
+  {
+    "id": 1056,
+    "url": "https://www.aljazeera.com/economy/2026/11/27/us-shoppers-get-ready-for-black-friday-and-cyber-monday?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1056,
+    "split": "test"
+  },
+  {
+    "id": 1057,
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/11/27/why-benjamin-netanyahus-corruption-trial-could-be-unravelling?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1057,
+    "split": "test"
+  },
+  {
+    "id": 1058,
+    "url": "https://www.aljazeera.com/sports/2026/11/27/manchester-united-brentford-pochettino-first-home-game-premier-league-football?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1058,
+    "split": "test"
+  },
+  {
+    "id": 1059,
+    "url": "https://www.aljazeera.com/news/2026/11/27/australia-sanctions-suspects-in-iran-linked-anti-semitic-attacks?traffic_source=rss",
+    "source": "Al Jazeera",
+    "event": 1059,
+    "split": "test"
+  },
+  {
+    "id": 1060,
+    "url": "https://astanatimes.com/2026/11/kazakhstan-votes-for-local-councils-what-maslikhat-elections-are-all-about/",
+    "source": "Astana Times",
+    "event": 1060,
+    "split": "test"
+  },
+  {
+    "id": 1061,
+    "url": "https://astanatimes.com/2026/11/kazakhstan-brings-together-global-sports-leaders-to-strengthen-anti-doping-efforts/",
+    "source": "Astana Times",
+    "event": 1061,
+    "split": "test"
+  },
+  {
+    "id": 1062,
+    "url": "https://astanatimes.com/2026/11/hong-kong-sees-kazakhstan-as-promising-tourism-market-ahead-of-direct-flight-launch/",
+    "source": "Astana Times",
+    "event": 1062,
+    "split": "test"
+  },
+  {
+    "id": 1064,
+    "url": "https://astanatimes.com/2026/11/baiterek-holding-to-expand-investment-support-for-kazakhstans-economy-in-2027/",
+    "source": "Astana Times",
+    "event": 1064,
+    "split": "test"
+  },
+  {
+    "id": 1066,
+    "url": "https://astanatimes.com/2026/11/kazakhstans-2027-outlook-improves-as-inflation-forecast-falls-tenge-strengthens/",
+    "source": "Astana Times",
+    "event": 1066,
+    "split": "test"
+  },
+  {
+    "id": 1067,
+    "url": "https://astanatimes.com/2026/11/dubai-to-host-gitex-global-2026-with-tech-leaders-from-more-than-120-countries/",
+    "source": "Astana Times",
+    "event": 1067,
+    "split": "test"
+  },
+  {
+    "id": 1068,
+    "url": "https://astanatimes.com/2026/11/kazakhstan-establishes-expert-group-to-develop-long-term-national-development-strategy/",
+    "source": "Astana Times",
+    "event": 1068,
+    "split": "test"
+  },
+  {
+    "id": 1071,
+    "url": "https://t.me/tengrinews/27958",
+    "source": "tengrinews",
+    "event": 1071,
+    "split": "test"
+  },
+  {
+    "id": 1073,
+    "url": "https://t.me/tengrinews/27960",
+    "source": "tengrinews",
+    "event": 1073,
+    "split": "test"
+  },
+  {
+    "id": 1074,
+    "url": "https://t.me/tengrinews/27961",
+    "source": "tengrinews",
+    "event": 1064,
+    "split": "test"
+  },
+  {
+    "id": 1075,
+    "url": "https://t.me/tengrinews/27962",
+    "source": "tengrinews",
+    "event": 1075,
+    "split": "test"
+  },
+  {
+    "id": 1076,
+    "url": "https://t.me/tengrinews/27963",
+    "source": "tengrinews",
+    "event": 1076,
+    "split": "test"
+  },
+  {
+    "id": 1077,
+    "url": "https://t.me/tengrinews/27964",
+    "source": "tengrinews",
+    "event": 1077,
+    "split": "test"
+  },
+  {
+    "id": 1078,
+    "url": "https://t.me/tengrinews/27965",
+    "source": "tengrinews",
+    "event": 1078,
+    "split": "test"
+  },
+  {
+    "id": 1079,
+    "url": "https://t.me/tengrinews/27966",
+    "source": "tengrinews",
+    "event": 1079,
+    "split": "test"
+  },
+  {
+    "id": 1080,
+    "url": "https://t.me/tengrinews/27970",
+    "source": "tengrinews",
+    "event": 1080,
+    "split": "test"
+  },
+  {
+    "id": 1081,
+    "url": "https://t.me/tengrinews/27971",
+    "source": "tengrinews",
+    "event": 1081,
+    "split": "test"
+  },
+  {
+    "id": 1082,
+    "url": "https://t.me/bbcrussian/101882",
+    "source": "bbcrussian",
+    "event": 1041,
+    "split": "test"
+  },
+  {
+    "id": 1083,
+    "url": "https://t.me/bbcrussian/101883",
+    "source": "bbcrussian",
+    "event": 1001,
+    "split": "test"
+  },
+  {
+    "id": 1085,
+    "url": "https://t.me/bbcrussian/101885",
+    "source": "bbcrussian",
+    "event": 1085,
+    "split": "test"
+  },
+  {
+    "id": 1086,
+    "url": "https://t.me/bbcrussian/101886",
+    "source": "bbcrussian",
+    "event": 1086,
+    "split": "test"
+  },
+  {
+    "id": 1087,
+    "url": "https://t.me/bbcrussian/101887",
+    "source": "bbcrussian",
+    "event": 1087,
+    "split": "test"
+  },
+  {
+    "id": 1088,
+    "url": "https://t.me/bbcrussian/101888",
+    "source": "bbcrussian",
+    "event": 1088,
+    "split": "test"
+  },
+  {
+    "id": 1089,
+    "url": "https://t.me/bbcrussian/101889",
+    "source": "bbcrussian",
+    "event": 1001,
+    "split": "test"
+  },
+  {
+    "id": 1090,
+    "url": "https://t.me/bbcrussian/101890",
+    "source": "bbcrussian",
+    "event": 1090,
+    "split": "test"
+  },
+  {
+    "id": 1091,
+    "url": "https://t.me/bbcrussian/101891",
+    "source": "bbcrussian",
+    "event": 1001,
+    "split": "test"
+  },
+  {
+    "id": 1092,
+    "url": "https://t.me/bbcrussian/101892",
+    "source": "bbcrussian",
+    "event": 1092,
+    "split": "test"
+  },
+  {
+    "id": 1093,
+    "url": "https://t.me/bbcrussian/101893",
+    "source": "bbcrussian",
+    "event": 1093,
+    "split": "test"
+  },
+  {
+    "id": 1094,
+    "url": "https://t.me/bbcrussian/101894",
+    "source": "bbcrussian",
+    "event": 1094,
+    "split": "test"
+  },
+  {
+    "id": 1096,
+    "url": "https://t.me/bbcrussian/101896",
+    "source": "bbcrussian",
+    "event": 1096,
+    "split": "test"
+  },
+  {
+    "id": 1097,
+    "url": "https://t.me/bbcrussian/101897",
+    "source": "bbcrussian",
+    "event": 1097,
+    "split": "test"
+  },
+  {
+    "id": 1098,
+    "url": "https://t.me/bbcrussian/101898",
+    "source": "bbcrussian",
+    "event": 1098,
+    "split": "test"
+  },
+  {
+    "id": 1099,
+    "url": "https://t.me/bbcrussian/101899",
+    "source": "bbcrussian",
+    "event": 1099,
+    "split": "test"
+  },
+  {
+    "id": 1100,
+    "url": "https://t.me/bbcrussian/101900",
+    "source": "bbcrussian",
+    "event": 1100,
+    "split": "test"
+  },
+  {
+    "id": 1102,
+    "url": "https://t.me/rian_ru/350538",
+    "source": "rian_ru",
+    "event": 1102,
+    "split": "test"
+  },
+  {
+    "id": 1103,
+    "url": "https://t.me/rian_ru/350540",
+    "source": "rian_ru",
+    "event": 1103,
+    "split": "test"
+  },
+  {
+    "id": 1104,
+    "url": "https://t.me/rian_ru/350541",
+    "source": "rian_ru",
+    "event": 1104,
+    "split": "test"
+  },
+  {
+    "id": 1105,
+    "url": "https://t.me/rian_ru/350542",
+    "source": "rian_ru",
+    "event": 1105,
+    "split": "test"
+  },
+  {
+    "id": 1106,
+    "url": "https://t.me/rian_ru/350543",
+    "source": "rian_ru",
+    "event": 1106,
+    "split": "test"
+  },
+  {
+    "id": 1107,
+    "url": "https://t.me/rian_ru/350544",
+    "source": "rian_ru",
+    "event": 1107,
+    "split": "test"
+  },
+  {
+    "id": 1108,
+    "url": "https://t.me/rian_ru/350545",
+    "source": "rian_ru",
+    "event": 1108,
+    "split": "test"
+  },
+  {
+    "id": 1110,
+    "url": "https://t.me/rian_ru/350547",
+    "source": "rian_ru",
+    "event": 1110,
+    "split": "test"
+  },
+  {
+    "id": 1111,
+    "url": "https://t.me/rian_ru/350548",
+    "source": "rian_ru",
+    "event": 1111,
+    "split": "test"
+  },
+  {
+    "id": 1113,
+    "url": "https://t.me/rian_ru/350550",
+    "source": "rian_ru",
+    "event": 1113,
+    "split": "test"
+  },
+  {
+    "id": 1114,
+    "url": "https://t.me/rian_ru/350551",
+    "source": "rian_ru",
+    "event": 1114,
+    "split": "test"
+  },
+  {
+    "id": 1115,
+    "url": "https://t.me/rian_ru/350552",
+    "source": "rian_ru",
+    "event": 1115,
+    "split": "test"
+  },
+  {
+    "id": 1116,
+    "url": "https://t.me/rian_ru/350553",
+    "source": "rian_ru",
+    "event": 1116,
+    "split": "test"
+  },
+  {
+    "id": 1117,
+    "url": "https://t.me/rian_ru/350554",
+    "source": "rian_ru",
+    "event": 1117,
+    "split": "test"
+  },
+  {
+    "id": 1119,
+    "url": "https://t.me/rian_ru/350556",
+    "source": "rian_ru",
+    "event": 1119,
+    "split": "test"
+  },
+  {
+    "id": 1120,
+    "url": "https://t.me/rian_ru/350557",
+    "source": "rian_ru",
+    "event": 1120,
+    "split": "test"
+  },
+  {
+    "id": 1121,
+    "url": "https://t.me/interfaxonline/82216",
+    "source": "interfaxonline",
+    "event": 1121,
+    "split": "test"
+  },
+  {
+    "id": 1122,
+    "url": "https://t.me/interfaxonline/82217",
+    "source": "interfaxonline",
+    "event": 1122,
+    "split": "test"
+  },
+  {
+    "id": 1123,
+    "url": "https://t.me/interfaxonline/82218",
+    "source": "interfaxonline",
+    "event": 1123,
+    "split": "test"
+  },
+  {
+    "id": 1124,
+    "url": "https://t.me/interfaxonline/82219",
+    "source": "interfaxonline",
+    "event": 1104,
+    "split": "test"
+  },
+  {
+    "id": 1125,
+    "url": "https://t.me/interfaxonline/82220",
+    "source": "interfaxonline",
+    "event": 1125,
+    "split": "test"
+  },
+  {
+    "id": 1126,
+    "url": "https://t.me/interfaxonline/82221",
+    "source": "interfaxonline",
+    "event": 1105,
+    "split": "test"
+  },
+  {
+    "id": 1127,
+    "url": "https://t.me/interfaxonline/82222",
+    "source": "interfaxonline",
+    "event": 1106,
+    "split": "test"
+  },
+  {
+    "id": 1128,
+    "url": "https://t.me/interfaxonline/82223",
+    "source": "interfaxonline",
+    "event": 1128,
+    "split": "test"
+  },
+  {
+    "id": 1129,
+    "url": "https://t.me/interfaxonline/82224",
+    "source": "interfaxonline",
+    "event": 1129,
+    "split": "test"
+  },
+  {
+    "id": 1130,
+    "url": "https://t.me/interfaxonline/82225",
+    "source": "interfaxonline",
+    "event": 1130,
+    "split": "test"
+  },
+  {
+    "id": 1131,
+    "url": "https://t.me/interfaxonline/82226",
+    "source": "interfaxonline",
+    "event": 1131,
+    "split": "test"
+  },
+  {
+    "id": 1132,
+    "url": "https://t.me/interfaxonline/82227",
+    "source": "interfaxonline",
+    "event": 1132,
+    "split": "test"
+  },
+  {
+    "id": 1133,
+    "url": "https://t.me/interfaxonline/82228",
+    "source": "interfaxonline",
+    "event": 1133,
+    "split": "test"
+  },
+  {
+    "id": 1134,
+    "url": "https://t.me/interfaxonline/82229",
+    "source": "interfaxonline",
+    "event": 1134,
+    "split": "test"
+  },
+  {
+    "id": 1135,
+    "url": "https://t.me/interfaxonline/82230",
+    "source": "interfaxonline",
+    "event": 1116,
+    "split": "test"
+  },
+  {
+    "id": 1136,
+    "url": "https://t.me/interfaxonline/82231",
+    "source": "interfaxonline",
+    "event": 1136,
+    "split": "test"
+  },
+  {
+    "id": 1137,
+    "url": "https://t.me/interfaxonline/82232",
+    "source": "interfaxonline",
+    "event": 1137,
+    "split": "test"
+  },
+  {
+    "id": 1139,
+    "url": "https://t.me/interfaxonline/82234",
+    "source": "interfaxonline",
+    "event": 1099,
+    "split": "test"
+  },
+  {
+    "id": 1140,
+    "url": "https://t.me/interfaxonline/82235",
+    "source": "interfaxonline",
+    "event": 1140,
+    "split": "test"
+  },
+  {
+    "id": 1141,
+    "url": "https://t.me/dwglavnoe/70959",
+    "source": "dwglavnoe",
+    "event": 1141,
+    "split": "test"
+  },
+  {
+    "id": 1142,
+    "url": "https://t.me/dwglavnoe/70961",
+    "source": "dwglavnoe",
+    "event": 1142,
+    "split": "test"
+  },
+  {
+    "id": 1145,
+    "url": "https://t.me/dwglavnoe/70964",
+    "source": "dwglavnoe",
+    "event": 1145,
+    "split": "test"
+  },
+  {
+    "id": 1146,
+    "url": "https://t.me/dwglavnoe/70965",
+    "source": "dwglavnoe",
+    "event": 1146,
+    "split": "test"
+  },
+  {
+    "id": 1147,
+    "url": "https://t.me/dwglavnoe/70966",
+    "source": "dwglavnoe",
+    "event": 1147,
+    "split": "test"
+  },
+  {
+    "id": 1148,
+    "url": "https://t.me/dwglavnoe/70971",
+    "source": "dwglavnoe",
+    "event": 1148,
+    "split": "test"
+  },
+  {
+    "id": 1149,
+    "url": "https://t.me/dwglavnoe/70972",
+    "source": "dwglavnoe",
+    "event": 1041,
+    "split": "test"
+  },
+  {
+    "id": 1150,
+    "url": "https://t.me/dwglavnoe/70973",
+    "source": "dwglavnoe",
+    "event": 1150,
+    "split": "test"
+  },
+  {
+    "id": 1151,
+    "url": "https://t.me/dwglavnoe/70974",
+    "source": "dwglavnoe",
+    "event": 1151,
+    "split": "test"
+  },
+  {
+    "id": 1152,
+    "url": "https://t.me/dwglavnoe/70975",
+    "source": "dwglavnoe",
+    "event": 1152,
+    "split": "test"
+  },
+  {
+    "id": 1153,
+    "url": "https://t.me/dwglavnoe/70976",
+    "source": "dwglavnoe",
+    "event": 1153,
+    "split": "test"
+  },
+  {
+    "id": 1154,
+    "url": "https://t.me/dwglavnoe/70977",
+    "source": "dwglavnoe",
+    "event": 1092,
+    "split": "test"
+  },
+  {
+    "id": 1155,
+    "url": "https://t.me/dwglavnoe/70978",
+    "source": "dwglavnoe",
+    "event": 1155,
+    "split": "test"
+  },
+  {
+    "id": 1156,
+    "url": "https://t.me/dwglavnoe/70979",
+    "source": "dwglavnoe",
+    "event": 1156,
+    "split": "test"
+  }
+]
