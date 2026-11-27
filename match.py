@@ -73,14 +73,29 @@ def run(lr, epochs):
     save('results.json',res)
     save('test_predictions.json',[dict(ids=[rows[i]['id'],rows[j]['id']],label=int(yy),baseline=float(xx[0]),score=float(pp)) for (i,j),yy,xx,pp in zip(pairs,y,x,p)])
     print(json.dumps(res,indent=2))
-def demo(a,b):
+def demo(a,b,leads=None):
+    """Score two unseen articles. Leads are optional but the model was trained with them."""
     from encode import encoder,vectors
-    rows=[dict(title=s,lead='') for s in (a,b)]
+    leads=leads or ['','']
+    rows=[dict(title=t,lead=l) for t,l in zip((a,b),leads)]
     model=encoder();title,full=vectors(model,rows);x=np.array(features(0,1,rows,title,full))
     head=json.loads((ROOT/'checkpoint.json').read_text())
     p=float(sigmoid(((x-head['mean'])/head['scale'])@head['weights']+head['bias']))
-    print(json.dumps(dict(inputs=[a,b],tokens=[model.tokenizer.tokenize(s)[:24] for s in (a,b)],features=dict(zip(FEATURES,x)),score=p,threshold=head['threshold'],same_event=p>=head['threshold']),ensure_ascii=False,indent=2))
+    views=[f"{r['title']}. {r['lead'][:600]}" for r in rows]
+    enc=[model.tokenizer(v,truncation=True,max_length=model.max_seq_length) for v in views]
+    out=dict(inputs=views,tokens=[' '.join(model.tokenizer.convert_ids_to_tokens(e['input_ids'])[:24]) for e in enc],
+             token_ids=[str(e['input_ids'][:24]) for e in enc],token_count=[len(e['input_ids']) for e in enc],
+             attention_mask_sum=[sum(e['attention_mask']) for e in enc],features=dict(zip(FEATURES,x)),
+             score=p,threshold=head['threshold'],same_event=p>=head['threshold'],
+             baseline_cosine=float(x[0]),baseline_same_event=bool(x[0]>=.72))
+    if not any(leads):
+        out['warning']=('No leads given: the "lead cosine" feature is computed from "headline." only, '
+                        'while training used headline plus up to 600 lead characters. Treat this score as out of distribution; '
+                        'pass --leads for a like-for-like comparison.')
+    print(json.dumps(out,ensure_ascii=False,indent=2))
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--demo',nargs=2);parser.add_argument('--lr',type=float,default=.5);parser.add_argument('--epochs',type=int,default=2000);args=parser.parse_args()
-    if args.demo:demo(*args.demo)
+    parser=argparse.ArgumentParser();parser.add_argument('--demo',nargs=2,metavar=('HEADLINE_A','HEADLINE_B'))
+    parser.add_argument('--leads',nargs=2,metavar=('LEAD_A','LEAD_B'),help='optional lead paragraphs for --demo')
+    parser.add_argument('--lr',type=float,default=.5);parser.add_argument('--epochs',type=int,default=2000);args=parser.parse_args()
+    if args.demo:demo(*args.demo,leads=args.leads)
     else:run(args.lr,args.epochs)

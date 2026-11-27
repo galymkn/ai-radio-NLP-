@@ -1,0 +1,105 @@
+$ python match.py --demo "Town opens new library" "В городе открылась новая библиотека"
+{
+  "inputs": [
+    "Town opens new library. ",
+    "В городе открылась новая библиотека. "
+  ],
+  "tokens": [
+    "<s> ▁Town ▁open s ▁new ▁libra ry . </s>",
+    "<s> ▁В ▁городе ▁открыл ась ▁новая ▁библиотека . </s>"
+  ],
+  "token_ids": [
+    "[0, 52649, 9803, 7, 3525, 35773, 1294, 5, 2]",
+    "[0, 417, 73951, 124697, 43460, 128082, 90544, 5, 2]"
+  ],
+  "token_count": [
+    9,
+    9
+  ],
+  "attention_mask_sum": [
+    9,
+    9
+  ],
+  "features": {
+    "lead cosine": 0.94712233543396,
+    "headline cosine": 0.8928447961807251,
+    "word overlap": 0.0,
+    "digit overlap": 0.0
+  },
+  "score": 0.9960602746476972,
+  "threshold": 0.6750000000000003,
+  "same_event": true,
+  "baseline_cosine": 0.94712233543396,
+  "baseline_same_event": true,
+  "warning": "No leads given: the \"lead cosine\" feature is computed from \"headline.\" only, while training used headline plus up to 600 lead characters. Treat this score as out of distribution; pass --leads for a like-for-like comparison."
+}
+
+$ python match.py --demo "Town opens new library" "В городе открылась новая библиотека" --leads "The city library reopened on Monday after a two-year renovation." "Городская библиотека открылась в понедельник после двухлетнего ремонта."
+{
+  "inputs": [
+    "Town opens new library. The city library reopened on Monday after a two-year renovation.",
+    "В городе открылась новая библиотека. Городская библиотека открылась в понедельник после двухлетнего ремонта."
+  ],
+  "tokens": [
+    "<s> ▁Town ▁open s ▁new ▁libra ry . ▁The ▁city ▁libra ry ▁re open ed ▁on ▁Monday ▁after ▁a ▁two - year ▁renova tion",
+    "<s> ▁В ▁городе ▁открыл ась ▁новая ▁библиотека . ▁Го род ская ▁библиотека ▁открыл ась ▁в ▁понедельник ▁после ▁двух летнего ▁ремонта . </s>"
+  ],
+  "token_ids": [
+    "[0, 52649, 9803, 7, 3525, 35773, 1294, 5, 581, 26349, 35773, 1294, 456, 59636, 297, 98, 68318, 7103, 10, 6626, 9, 46799, 40964, 1363]",
+    "[0, 417, 73951, 124697, 43460, 128082, 90544, 5, 11630, 9302, 9694, 90544, 124697, 43460, 49, 229110, 3738, 20803, 201360, 153228, 5, 2]"
+  ],
+  "token_count": [
+    26,
+    22
+  ],
+  "attention_mask_sum": [
+    26,
+    22
+  ],
+  "features": {
+    "lead cosine": 0.9349396228790283,
+    "headline cosine": 0.8928447961807251,
+    "word overlap": 0.0,
+    "digit overlap": 0.0
+  },
+  "score": 0.9953524264666946,
+  "threshold": 0.6750000000000003,
+  "same_event": true,
+  "baseline_cosine": 0.9349396228790283,
+  "baseline_same_event": true
+}
+
+$ python match.py --demo "Drone attack damages homes in Novorossiysk" "Drone attack injures woman in St Petersburg" --leads "Seventy flats were damaged in a drone attack on Novorossiysk overnight." "A woman was injured when a drone struck a residential area of St Petersburg."
+{
+  "inputs": [
+    "Drone attack damages homes in Novorossiysk. Seventy flats were damaged in a drone attack on Novorossiysk overnight.",
+    "Drone attack injures woman in St Petersburg. A woman was injured when a drone struck a residential area of St Petersburg."
+  ],
+  "tokens": [
+    "<s> ▁Dro ne ▁attack ▁damage s ▁homes ▁in ▁Novo rossi ysk . ▁Seven ty ▁flat s ▁were ▁damage d ▁in ▁a ▁drone ▁attack ▁on",
+    "<s> ▁Dro ne ▁attack ▁in ju res ▁woman ▁in ▁St ▁Petersburg . ▁A ▁woman ▁was ▁in ju red ▁when ▁a ▁drone ▁s truck ▁a"
+  ],
+  "token_ids": [
+    "[0, 46193, 86, 52875, 82649, 7, 44556, 23, 22695, 181970, 74494, 5, 132556, 939, 49878, 7, 3542, 82649, 71, 23, 10, 143027, 52875, 98]",
+    "[0, 46193, 86, 52875, 23, 461, 2109, 46667, 23, 2907, 72673, 5, 62, 46667, 509, 23, 461, 2822, 3229, 10, 143027, 91, 173964, 10]"
+  ],
+  "token_count": [
+    31,
+    32
+  ],
+  "attention_mask_sum": [
+    31,
+    32
+  ],
+  "features": {
+    "lead cosine": 0.6912754774093628,
+    "headline cosine": 0.694817304611206,
+    "word overlap": 0.3,
+    "digit overlap": 0.0
+  },
+  "score": 0.9999853835385065,
+  "threshold": 0.6750000000000003,
+  "same_event": true,
+  "baseline_cosine": 0.6912754774093628,
+  "baseline_same_event": false
+}
