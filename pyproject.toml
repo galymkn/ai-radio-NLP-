@@ -26,6 +26,8 @@ embeddings = ["sentence-transformers>=3.0"]
 kokoro = ["kokoro>=0.9", "soundfile>=0.12"]
 postgres = ["psycopg[binary]>=3.2"]
 telegram = ["telethon>=1.36,<2"]
+# Text quality metrics: python scripts/eval_text.py
+eval = ["rouge-score>=0.1.2", "bert-score>=0.3.12"]
 dev = ["pytest>=8.0"]
 
 [build-system]
