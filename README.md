@@ -2,6 +2,8 @@
 
 RSS / Telegram → storage → story clustering (SBERT embeddings) → LLM editor (Gemini free tier by default) → per-sentence fact check → TTS → MP3 / web player / live stream.
 
+**Project report with methods and metrics: [REPORT.md](REPORT.md).** The team's event-matching study is in [event_matching/](event_matching/).
+
 See [README_RU.md](README_RU.md) for setup, Docker/Postgres, Telegram credentials, demo commands, evaluation and limitations.
 
 ```bash
