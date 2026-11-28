@@ -42,14 +42,15 @@ ner:
 
 editor:
   backend: "gemini"         # gemini | claude | fake   (fake = extractive, no API key)
-  model: "gemini-3.5-flash" # override with EDITOR_MODEL env var; free models are listed in Google AI Studio
+  model: "gemini-3.5-flash-lite"  # free tier: 500 requests/day (Flash: only 20). Override with EDITOR_MODEL
   verify: true              # second LLM pass: drop sentences not supported by sources
   max_edits_per_cycle: 4    # only for `cycle`/`demo`; the live server edits continuously
   workers: 2                # live server: two stories are written in parallel, so new ones arrive faster than they play
   script_words: "120-180"   # about 45-70 seconds on air
   priority_sources: ["Astana Times", "@tengrinews"]   # Kazakhstan first
   min_seconds_between_calls: 6   # stay under the free per-minute limit
-  max_calls_per_day: 200    # own daily cap; when reached, editing waits (counter resets on restart)
+  max_calls_per_day: 480    # own daily cap, a bit under the model's free limit (counter resets on restart)
+  reserve_for_questions: 60 # of those, kept for "Ask the radio": editors stop at 420 calls (~210 stories)
   max_attempts: 3
   retry_backoff_seconds: 120  # exponential backoff, then failed; retry-failed to reset
   reedit_cooldown_minutes: 30

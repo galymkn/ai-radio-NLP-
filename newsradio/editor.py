@@ -14,6 +14,7 @@ import os
 import re
 import threading
 import time
+from contextlib import contextmanager
 from dataclasses import dataclass, field
 from typing import Protocol
 
@@ -292,6 +293,13 @@ SAFETY_CATEGORIES = ("HARM_CATEGORY_HARASSMENT", "HARM_CATEGORY_HATE_SPEECH",
                      "HARM_CATEGORY_SEXUALLY_EXPLICIT", "HARM_CATEGORY_DANGEROUS_CONTENT")
 
 
+def _quota_day() -> str:
+    """Gemini's daily quota day: the calendar date in Pacific time."""
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+    return datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+
+
 def to_gemini_schema(schema: dict) -> dict:
     """Tool JSON Schema -> Gemini responseSchema (upper-case types; min/max are checked in code instead)."""
     out = {}
@@ -352,7 +360,7 @@ class GeminiEditor:
     a JSON schema. Calls are spaced out and counted so the station stays inside the free limits.
     """
 
-    def __init__(self, cfg: EditorCfg, station: str, language: str = "en"):
+    def __init__(self, cfg: EditorCfg, station: str, language: str = "en", usage_path=None):
         self.key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
         if not self.key:
             raise RuntimeError("GEMINI_API_KEY is not set in .env (or use editor.backend: fake)")
@@ -362,22 +370,51 @@ class GeminiEditor:
         self.words = cfg.script_words
         self.min_gap = cfg.min_seconds_between_calls
         self.max_per_day = cfg.max_calls_per_day
+        self.reserve = min(cfg.reserve_for_questions, cfg.max_calls_per_day)
+        self._purpose = threading.local()
         self._last_call = 0.0
         self._day, self._calls_today = "", 0
         self._turn = threading.Lock()  # several editor workers share one quota
+        # The count survives restarts, like Google's own quota (which resets at midnight Pacific time).
+        self._usage_path = usage_path
+        if usage_path:
+            try:
+                saved = json.loads(open(usage_path, encoding="utf-8").read())
+                if saved.get("day") == _quota_day():
+                    self._day, self._calls_today = saved["day"], int(saved["calls"])
+            except (OSError, ValueError, KeyError):
+                pass
+
+    @contextmanager
+    def for_questions(self):
+        """Calls made inside may use the reserve kept for listener questions."""
+        self._purpose.questions = True
+        try:
+            yield
+        finally:
+            self._purpose.questions = False
 
     def _wait_turn(self) -> None:
         with self._turn:
-            today = time.strftime("%Y-%m-%d", time.gmtime())
+            today = _quota_day()
             if today != self._day:
                 self._day, self._calls_today = today, 0
-            if self.max_per_day and self._calls_today >= self.max_per_day:
-                raise RateLimited(f"own daily cap of {self.max_per_day} Gemini calls reached")
+            cap = self.max_per_day
+            if cap and not getattr(self._purpose, "questions", False):
+                cap -= self.reserve          # the editors leave room for listener questions
+            if self.max_per_day and self._calls_today >= cap:
+                raise RateLimited(f"own daily cap of {cap} Gemini calls reached")
             pause = self._last_call + self.min_gap - time.monotonic()
             if pause > 0:
                 time.sleep(pause)
             self._last_call = time.monotonic()
             self._calls_today += 1
+            if self._usage_path:
+                try:
+                    with open(self._usage_path, "w", encoding="utf-8") as f:
+                        json.dump({"day": self._day, "calls": self._calls_today}, f)
+                except OSError:
+                    log.warning("could not save LLM usage to %s", self._usage_path)
 
     def _call_json(self, system: str, user: str, schema: dict, temperature: float) -> dict:
         body = {
@@ -458,9 +495,9 @@ class FakeEditor:
         return {"found": True, "answer": f"{top.source} reports: {body}", "sources": [1]}
 
 
-def make_editor(cfg: EditorCfg, station: str, language: str = "en") -> EditorBackend:
+def make_editor(cfg: EditorCfg, station: str, language: str = "en", usage_path=None) -> EditorBackend:
     if cfg.backend == "gemini":
-        return GeminiEditor(cfg, station, language)
+        return GeminiEditor(cfg, station, language, usage_path)
     if cfg.backend == "claude":
         return ClaudeEditor(cfg, station, language)
     if cfg.backend == "fake":

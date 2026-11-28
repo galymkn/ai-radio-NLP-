@@ -32,7 +32,9 @@ class Pipeline:
     @classmethod
     def build(cls, cfg: Config, db: DB | None = None) -> "Pipeline":
         pipeline = cls(cfg=cfg, db=db or DB(cfg.database_url or cfg.db_path), embedder=make_embedder(cfg.cluster),
-                       editor=make_editor(cfg.editor, cfg.station_name, cfg.language), tts=make_tts(cfg.tts),
+                       editor=make_editor(cfg.editor, cfg.station_name, cfg.language,
+                                          usage_path=cfg.data_path / "llm_usage.json"),
+                       tts=make_tts(cfg.tts),
                        ner=make_ner(cfg.ner))
         pipeline._claims()
         return pipeline

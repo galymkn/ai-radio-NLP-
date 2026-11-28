@@ -431,7 +431,17 @@ $("askForm").addEventListener("submit", async (ev) => {
     const res = await r.json();
     box.hidden = false;
     list.replaceChildren();
-    if (!r.ok) { box.classList.add("miss"); $("answerText").textContent = res.detail || "The question could not be answered. Try again."; return; }
+    if (!r.ok) {
+      box.classList.add("miss");
+      const d = res.detail;
+      if (d && d.reset_at) {
+        const at = new Date(d.reset_at * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+        $("answerText").textContent = `${d.message} It renews at ${at}.`;
+      } else {
+        $("answerText").textContent = typeof d === "string" ? d : "The question could not be answered. Try again.";
+      }
+      return;
+    }
     box.classList.toggle("miss", !res.found);
     $("answerText").textContent = res.answer;
     for (const s of res.sources) {

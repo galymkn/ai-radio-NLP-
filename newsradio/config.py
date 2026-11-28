@@ -57,6 +57,7 @@ class Editor:
     workers: int = 1                        # live server: stories written in parallel
     min_seconds_between_calls: float = 0    # free tiers limit requests per minute
     max_calls_per_day: int = 0              # own daily cap on LLM calls (0 = no cap); resets on restart
+    reserve_for_questions: int = 0          # part of the daily cap that only "Ask the radio" may use
     max_attempts: int = 3
     retry_backoff_seconds: float = 120
     reedit_cooldown_minutes: float = 30

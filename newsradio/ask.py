@@ -14,6 +14,7 @@ import logging
 import re
 import time
 import uuid
+from contextlib import nullcontext
 
 import numpy as np
 
@@ -60,6 +61,12 @@ def retrieve(db, embedder, question: str, *, k: int, window_hours: float, min_sc
 
 
 def answer_question(pipeline, question: str) -> dict:
+    # Listener questions may use the part of the daily LLM quota that the editors leave free.
+    with getattr(pipeline.editor, "for_questions", nullcontext)():
+        return _answer(pipeline, question)
+
+
+def _answer(pipeline, question: str) -> dict:
     cfg = pipeline.cfg
     ac = cfg.ask
     language = question_language(question)

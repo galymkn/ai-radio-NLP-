@@ -150,3 +150,44 @@ def test_ask_endpoint_and_quota(tmp_path, monkeypatch):
         assert client.post("/api/ask", json={"question": "Anything new?"}).status_code == 429
         clips = client.get("/api/clips").json()
         assert all("entities" in c for c in clips)
+
+
+# ---------------------------------------------------------------- free quota
+
+def test_editors_leave_a_reserve_for_questions(monkeypatch, tmp_path):
+    from newsradio import editor as ed_mod
+    from newsradio.config import Editor
+    monkeypatch.setenv("GEMINI_API_KEY", "k")
+    ed = ed_mod.GeminiEditor(Editor(backend="gemini", model="m", max_calls_per_day=5, reserve_for_questions=2), "FM")
+    for _ in range(3):
+        ed._wait_turn()                      # editors: 5 - 2 = 3 calls
+    with pytest.raises(ed_mod.RateLimited):
+        ed._wait_turn()
+    with ed.for_questions():
+        ed._wait_turn(); ed._wait_turn()     # questions may use the reserve
+        with pytest.raises(ed_mod.RateLimited):
+            ed._wait_turn()
+
+
+def test_daily_count_survives_restart(monkeypatch, tmp_path):
+    from newsradio import editor as ed_mod
+    from newsradio.config import Editor
+    monkeypatch.setenv("GEMINI_API_KEY", "k")
+    cfg, path = Editor(backend="gemini", model="m", max_calls_per_day=3), tmp_path / "usage.json"
+    first = ed_mod.GeminiEditor(cfg, "FM", usage_path=path)
+    first._wait_turn(); first._wait_turn()
+    again = ed_mod.GeminiEditor(cfg, "FM", usage_path=path)   # station restarted
+    again._wait_turn()
+    with pytest.raises(ed_mod.RateLimited):
+        again._wait_turn()
+
+
+def test_quota_message_says_when_it_renews(tmp_path, monkeypatch):
+    from newsradio.editor import RateLimited
+    from newsradio.server import create_app
+    import newsradio.ask as ask_mod
+    cfg, p = station(tmp_path)
+    monkeypatch.setattr(ask_mod, "answer_question", lambda *a: (_ for _ in ()).throw(RateLimited("cap")))
+    with TestClient(create_app(cfg, run_worker=False)) as client:
+        r = client.post("/api/ask", json={"question": "Anything new?"})
+        assert r.status_code == 429 and r.json()["detail"]["reset_at"] > time.time()

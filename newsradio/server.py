@@ -47,6 +47,14 @@ class AskBody(BaseModel):
     question: str = Field(min_length=3, max_length=300)
 
 
+def next_quota_reset() -> float:
+    """Gemini daily quotas reset at midnight Pacific time; returns that moment as a Unix time."""
+    from datetime import datetime, timedelta
+    from zoneinfo import ZoneInfo
+    now = datetime.now(ZoneInfo("America/Los_Angeles"))
+    return (now.replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)).timestamp()
+
+
 def story_entities(db: DB, story_id) -> dict[str, list[str]]:
     if story_id is None:
         return {}
@@ -184,7 +192,8 @@ def create_app(cfg: Config, run_worker: bool | None = None) -> FastAPI:
         try:
             return answer_question(get_pipeline(), body.question.strip())
         except RateLimited:
-            raise HTTPException(429, "The free LLM quota is used up for now. Try again later.")
+            raise HTTPException(429, {"message": "Today's free Gemini quota is used up.",
+                                      "reset_at": next_quota_reset()})
         except ValueError:
             raise HTTPException(502, "The answer could not be checked against the reports. Try again.")
 
