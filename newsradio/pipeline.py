@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+import threading
 import time
 import uuid
 from dataclasses import dataclass
@@ -28,8 +29,16 @@ class Pipeline:
 
     @classmethod
     def build(cls, cfg: Config, db: DB | None = None) -> "Pipeline":
-        return cls(cfg=cfg, db=db or DB(cfg.database_url or cfg.db_path), embedder=make_embedder(cfg.cluster),
-                   editor=make_editor(cfg.editor, cfg.station_name, cfg.language), tts=make_tts(cfg.tts))
+        pipeline = cls(cfg=cfg, db=db or DB(cfg.database_url or cfg.db_path), embedder=make_embedder(cfg.cluster),
+                       editor=make_editor(cfg.editor, cfg.station_name, cfg.language), tts=make_tts(cfg.tts))
+        pipeline._claims()
+        return pipeline
+
+    def _claims(self):
+        """Stories being edited right now, so parallel editor workers never take the same one."""
+        if not hasattr(self, "_busy"):
+            self._busy, self._busy_lock = set(), threading.Lock()
+        return self._busy, self._busy_lock
 
     # ------------------------------------------------------------ 1. ingest
     def collect(self) -> list[RawArticle]:
@@ -117,11 +126,15 @@ class Pipeline:
         """Edit the most important waiting story.
         Returns "clip", "no-clip" (rejected / nothing new), "idle" (queue empty), "paused" (quota) or "error"."""
         ec = self.cfg.editor
-        stories = self.db.stories_to_edit(time.time(), ec.reedit_cooldown_minutes * 60,
-                                          self.cfg.cluster.window_hours * 3600, 1, ec.priority_sources)
-        if not stories:
-            return "idle"
-        s = stories[0]
+        busy, lock = self._claims()
+        with lock:
+            stories = self.db.stories_to_edit(time.time(), ec.reedit_cooldown_minutes * 60,
+                                              self.cfg.cluster.window_hours * 3600, 1 + len(busy),
+                                              ec.priority_sources)
+            s = next((row for row in stories if row["id"] not in busy), None)
+            if s is None:
+                return "idle"
+            busy.add(s["id"])
         try:
             return "clip" if self.edit_story(s) else "no-clip"
         except RateLimited as exc:  # free quota used up: not the story's fault, try later
@@ -133,6 +146,9 @@ class Pipeline:
                                         time.time(), type(exc).__name__)
             log.exception("editing story %d failed", s["id"])
             return "error"
+        finally:
+            with lock:
+                busy.discard(s["id"])
 
     def edit_pending(self) -> int:
         made = 0

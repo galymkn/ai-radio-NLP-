@@ -38,6 +38,7 @@ editor:
   model: "gemini-3.5-flash" # override with EDITOR_MODEL env var; free models are listed in Google AI Studio
   verify: true              # second LLM pass: drop sentences not supported by sources
   max_edits_per_cycle: 4    # only for `cycle`/`demo`; the live server edits continuously
+  workers: 2                # live server: two stories are written in parallel, so new ones arrive faster than they play
   script_words: "120-180"   # about 45-70 seconds on air
   priority_sources: ["Astana Times", "@tengrinews"]   # Kazakhstan first
   min_seconds_between_calls: 6   # stay under the free per-minute limit
@@ -55,7 +56,7 @@ tts:
   rate: "+0%"
 
 wheel:
-  repeat_stories: true     # radio rotation; false = once per listener
+  repeat_stories: false    # false: every story plays once, replays only when the listener picks one
   cooldown_minutes: 20      # don't repeat a clip to the same listener sooner than this
   half_life_hours: 3        # freshness decay
   station_id_every: 5       # insert station ID after every N stories (0 = off)

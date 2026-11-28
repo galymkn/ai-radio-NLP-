@@ -123,9 +123,15 @@
   .queue { margin-top: 44px; }
   .queue h2 { font: 700 22px/1 var(--display); margin: 0 0 10px; color: var(--text); }
   #queue { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--enamel-3); }
-  #queue li { display: grid; grid-template-columns: 30px 1fr auto; gap: 14px; align-items: center;
-              padding: 12px 2px; border-bottom: 1px solid var(--enamel-3); }
-  #queue li.on { color: var(--amber); }
+  .qnote { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+  #queue li { border-bottom: 1px solid var(--enamel-3); }
+  .qitem { all: unset; box-sizing: border-box; width: 100%; cursor: pointer; display: grid;
+           grid-template-columns: 30px 1fr auto; gap: 14px; align-items: center; padding: 12px 2px;
+           border-radius: 6px; font: 400 17px/1.5 var(--body); color: var(--text); }
+  .qitem:hover .qhl { text-decoration: underline; text-underline-offset: 3px; }
+  .qitem:focus-visible { outline: 3px solid var(--ivory); outline-offset: 2px; }
+  #queue li.heard .qitem { color: var(--muted); }
+  #queue li.on .qitem { color: var(--amber); }
   .bars { display: flex; gap: 2px; align-items: flex-end; height: 14px; }
   .bars span { width: 4px; border-radius: 1px; background: var(--enamel-3); }
   .bars span.lit { background: var(--muted); }
@@ -192,7 +198,8 @@
   </section>
 
   <section class="queue">
-    <h2>On the wheel</h2>
+    <h2>Stories on air</h2>
+    <p class="qnote">Each story plays once. Select one to hear it again.</p>
     <ul id="queue"><li class="empty">No stories ready yet. The editor is writing the first one.</li></ul>
   </section>
 
@@ -206,7 +213,8 @@ const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 let listener = null;
 try { listener = localStorage.getItem("nr_listener"); } catch {}
 if (!listener) { listener = crypto.randomUUID().slice(0, 12); try { localStorage.setItem("nr_listener", listener); } catch {} }
-let current = null, playing = false, tunedIn = false;
+let current = null, playing = false, tunedIn = false, waitTimer = null;
+const heard = new Set();   // stories this page has played
 $("streamUrl").textContent = location.origin + "/stream";
 
 /* ---------------- the dial drum: 12 faces on a cylinder, face 0 is the station ident */
@@ -295,13 +303,29 @@ function drawMeter() {
 async function next() {
   if (!playing) return;
   let item;
+  clearTimeout(waitTimer);
   try { item = await (await fetch(`/api/next?listener=${listener}`)).json(); }
-  catch { setTimeout(next, 5000); return; }
+  catch { waitTimer = setTimeout(next, 5000); return; }
   current = item;
   render(item);
-  if (item.type === "idle") { setTimeout(next, (item.retry_after || 10) * 1000); return; }
+  if (item.type === "idle") { audio.removeAttribute("src"); waitTimer = setTimeout(next, (item.retry_after || 10) * 1000); return; }
   audio.src = item.audio_url;
-  audio.play().catch(() => setTimeout(next, 2000));
+  audio.play().catch(() => { waitTimer = setTimeout(next, 2000); });
+}
+
+// The listener picked a story from the list: play it now, then go back to live news.
+function playChosen(clip) {
+  clearTimeout(waitTimer);
+  if (!playing) {
+    playing = true;
+    $("play").textContent = "Pause";
+    $("app").classList.add("live");
+    startMeter();
+  }
+  current = { ...clip, type: "story", chosen: true };
+  render(current);
+  audio.src = clip.audio_url;
+  audio.play().catch(() => {});
 }
 
 function render(item) {
@@ -309,6 +333,7 @@ function render(item) {
   tunedIn = true;
   if (item.type === "story") {
     turnTo(placeClip(item), spin);
+    heard.add(item.id);
     $("kind").textContent = "On air";
     $("headline").textContent = item.headline;
     $("script").textContent = item.script || "";
@@ -322,8 +347,11 @@ function render(item) {
   } else {
     turnTo(0, spin);
     $("kind").textContent = "Waiting for news";
-    $("headline").textContent = "No stories ready yet.";
-    $("script").textContent = "The editor is writing and checking the first story. Playback starts on its own.";
+    const anyReady = heard.size > 0 || clipsCache.length > 0;
+    $("headline").textContent = anyReady ? "Next story is on its way." : "No stories ready yet.";
+    $("script").textContent = anyReady
+      ? "You have heard every story that is ready. The editor is writing and checking the next one, and it starts on its own."
+      : "The editor is writing and checking the first story. Playback starts on its own.";
     $("sources").textContent = "";
   }
   $("skip").disabled = item.type !== "story";
@@ -338,7 +366,7 @@ audio.addEventListener("timeupdate", () => {
   $("total").textContent = fmt(audio.duration);
 });
 audio.addEventListener("playing", () => {
-  if (current?.type === "story") {
+  if (current?.type === "story" && !current.chosen) {
     fetch(`/api/started?listener=${encodeURIComponent(listener)}&clip_id=${current.id}`, {method: "POST"}).catch(() => {});
   }
 });
@@ -366,6 +394,7 @@ let clipsCache = [];
 function markQueue() {
   document.querySelectorAll("#queue li[data-id]").forEach((li) => {
     li.classList.toggle("on", current?.type === "story" && String(current.id) === li.dataset.id);
+    li.classList.toggle("heard", heard.has(Number(li.dataset.id)));
   });
 }
 async function refresh() {
@@ -386,12 +415,15 @@ async function refresh() {
     }
     for (const c of clips.slice(0, 15)) {
       const li = document.createElement("li"); li.dataset.id = c.id;
+      const btn = document.createElement("button"); btn.type = "button"; btn.className = "qitem";
+      btn.setAttribute("aria-label", `Play now: ${c.headline}`);
+      btn.onclick = () => playChosen(c);
       const bars = document.createElement("span"); bars.className = "bars";
       bars.setAttribute("aria-label", `Priority ${c.priority} of 5`);
       for (let i = 1; i <= 5; i++) { const b = document.createElement("span"); b.style.height = (3 + i * 2.2) + "px"; if (i <= c.priority) b.className = "lit"; bars.append(b); }
-      const h = document.createElement("span"); h.textContent = c.headline;
+      const h = document.createElement("span"); h.className = "qhl"; h.textContent = c.headline;
       const cat = document.createElement("span"); cat.className = "qcat"; cat.textContent = pretty(c.category);
-      li.append(bars, h, cat); ul.append(li);
+      btn.append(bars, h, cat); li.append(btn); ul.append(li);
     }
     markQueue();
   } catch {}

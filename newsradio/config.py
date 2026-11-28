@@ -45,6 +45,7 @@ class Editor:
     model: str = "claude-haiku-5-5"
     verify: bool = True
     max_edits_per_cycle: int = 8
+    workers: int = 1                        # live server: stories written in parallel
     min_seconds_between_calls: float = 0    # free tiers limit requests per minute
     max_calls_per_day: int = 0              # own daily cap on LLM calls (0 = no cap); resets on restart
     max_attempts: int = 3

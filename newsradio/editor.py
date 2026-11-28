@@ -12,6 +12,7 @@ import json
 import logging
 import os
 import re
+import threading
 import time
 from dataclasses import dataclass, field
 from typing import Protocol
@@ -329,18 +330,20 @@ class GeminiEditor:
         self.max_per_day = cfg.max_calls_per_day
         self._last_call = 0.0
         self._day, self._calls_today = "", 0
+        self._turn = threading.Lock()  # several editor workers share one quota
 
     def _wait_turn(self) -> None:
-        today = time.strftime("%Y-%m-%d", time.gmtime())
-        if today != self._day:
-            self._day, self._calls_today = today, 0
-        if self.max_per_day and self._calls_today >= self.max_per_day:
-            raise RateLimited(f"own daily cap of {self.max_per_day} Gemini calls reached")
-        pause = self._last_call + self.min_gap - time.monotonic()
-        if pause > 0:
-            time.sleep(pause)
-        self._last_call = time.monotonic()
-        self._calls_today += 1
+        with self._turn:
+            today = time.strftime("%Y-%m-%d", time.gmtime())
+            if today != self._day:
+                self._day, self._calls_today = today, 0
+            if self.max_per_day and self._calls_today >= self.max_per_day:
+                raise RateLimited(f"own daily cap of {self.max_per_day} Gemini calls reached")
+            pause = self._last_call + self.min_gap - time.monotonic()
+            if pause > 0:
+                time.sleep(pause)
+            self._last_call = time.monotonic()
+            self._calls_today += 1
 
     def _call_json(self, system: str, user: str, schema: dict, temperature: float) -> dict:
         body = {

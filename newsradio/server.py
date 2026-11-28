@@ -92,7 +92,7 @@ def create_app(cfg: Config, run_worker: bool | None = None) -> FastAPI:
     # How long the editor waits before looking again, by outcome of the last story.
     editor_pause = {"clip": 0, "no-clip": 0, "error": 5, "idle": 10, "paused": 120}
 
-    async def editor_loop(pipeline):
+    async def editor_loop(pipeline, worker_no):
         """Writes and voices stories one after another, while the current clip is on air."""
         while True:
             try:
@@ -100,18 +100,19 @@ def create_app(cfg: Config, run_worker: bool | None = None) -> FastAPI:
             except Exception:  # noqa: BLE001
                 outcome = "error"
                 log.exception("editor step failed")
-            worker_state["editor"] = {"last": outcome, "at": time.time(),
+            worker_state["editor"] = {"last": outcome, "at": time.time(), "worker": worker_no,
                                       "paused": getattr(pipeline, "llm_paused", "") if outcome == "paused" else ""}
             await asyncio.sleep(editor_pause.get(outcome, 5))
 
     async def worker():
-        pipeline, editor_task = None, None
+        pipeline, editor_tasks = None, []
         try:
             while True:
                 try:
                     if pipeline is None:
                         pipeline = await asyncio.to_thread(Pipeline.build, cfg, db)
-                        editor_task = asyncio.create_task(editor_loop(pipeline))
+                        editor_tasks = [asyncio.create_task(editor_loop(pipeline, i))
+                                        for i in range(max(1, cfg.editor.workers))]
                     result = await asyncio.to_thread(pipeline.ingest_once)
                     worker_state.update(last_success=time.time(), last_error=None, last_cycle=result)
                 except Exception as exc:  # noqa: BLE001
@@ -119,8 +120,8 @@ def create_app(cfg: Config, run_worker: bool | None = None) -> FastAPI:
                     log.exception("ingest cycle failed")
                 await asyncio.sleep(cfg.ingest.poll_seconds)
         finally:
-            if editor_task:
-                editor_task.cancel()
+            for t in editor_tasks:
+                t.cancel()
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):

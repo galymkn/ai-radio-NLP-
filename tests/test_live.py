@@ -78,3 +78,51 @@ def _cfg(tmp_path, priority=()):
     cfg.editor.priority_sources = list(priority)
     cfg.clips_path.mkdir(parents=True, exist_ok=True)
     return cfg
+
+
+def test_shipped_config_plays_each_story_once(tmp_path):
+    from pathlib import Path
+    from newsradio.config import load_config
+    cfg = load_config(Path(__file__).resolve().parent.parent / "config.yaml")
+    assert cfg.wheel.repeat_stories is False and cfg.editor.workers >= 2
+    wheel, lst, now = cfg.wheel, Listener(), time.time()
+    clips = [clip(1, 5), clip(2, 3)]
+    for step in range(2):
+        lst.record(pick(clips, lst, now + step, wheel), now + step)
+    assert pick(clips, lst, now + 3600, wheel) is None  # nothing new: wait, never replay on its own
+
+
+def test_parallel_workers_never_take_the_same_story(tmp_path):
+    pipeline = Pipeline.build(_cfg(tmp_path), DB(tmp_path / "db"))
+    pipeline.ingest_once([
+        article(1, "BBC", "Metro opens two stations", "The metro opened two stations. " * 6),
+        article(2, "BBC", "Central bank keeps the rate", "The central bank kept its base rate unchanged. " * 6),
+    ])
+    first = pipeline.db.stories_to_edit(time.time(), 0, 3600, 1)[0]["id"]
+    busy, _ = pipeline._claims()
+    busy.add(first)                      # worker 1 is busy with the top story
+    seen = []
+    pipeline.edit_story = lambda s: seen.append(s["id"]) or 1
+    assert pipeline.edit_next() == "clip"
+    assert seen and seen[0] != first     # worker 2 takes the next one
+    assert first in busy and seen[0] not in busy  # its claim is released when done
+
+
+def test_gemini_quota_is_shared_between_workers(monkeypatch):
+    import threading
+    from newsradio import editor as ed_mod
+    from newsradio.config import Editor
+    monkeypatch.setenv("GEMINI_API_KEY", "k")
+    ed = ed_mod.GeminiEditor(Editor(backend="gemini", model="m", max_calls_per_day=5), "FM")
+    results = []
+
+    def call():
+        try:
+            ed._wait_turn(); results.append("ok")
+        except ed_mod.RateLimited:
+            results.append("capped")
+
+    threads = [threading.Thread(target=call) for _ in range(12)]
+    for t in threads: t.start()
+    for t in threads: t.join()
+    assert results.count("ok") == 5 and results.count("capped") == 7
