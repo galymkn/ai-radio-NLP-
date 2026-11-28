@@ -18,6 +18,11 @@ CREATE TABLE IF NOT EXISTS edit_attempts (
     next_retry_at REAL NOT NULL DEFAULT 0,
     last_error TEXT
 );
+CREATE TABLE IF NOT EXISTS article_entities (
+    id INTEGER PRIMARY KEY,
+    article_id INTEGER UNIQUE NOT NULL,
+    entities TEXT NOT NULL            -- JSON [[kind, name], ...], kind = PER | ORG | LOC
+);
 CREATE TABLE IF NOT EXISTS broadcast_events (
     id INTEGER PRIMARY KEY,
     clip_id INTEGER UNIQUE NOT NULL,
@@ -187,6 +192,30 @@ class DB:
             self.conn.execute(
                 "UPDATE articles SET story_id=?, embedding=? WHERE id=?", (story_id, to_blob(emb), article_id)
             )
+
+    def save_entities(self, article_id: int, entities) -> None:
+        with self.lock:
+            self.conn.execute("INSERT OR IGNORE INTO article_entities(article_id, entities) VALUES (?,?)",
+                              (article_id, json.dumps([list(e) for e in entities], ensure_ascii=False)))
+
+    def story_entities(self, story_ids) -> dict[int, list[list[tuple[str, str]]]]:
+        """Entities of every article in the given stories: {story_id: [[(kind, name), ...] per article]}."""
+        ids, out = list(story_ids), {}
+        with self.lock:
+            for i in range(0, len(ids), 500):
+                chunk = ids[i:i + 500]
+                rows = self.conn.execute(
+                    "SELECT a.story_id, e.entities FROM article_entities e JOIN articles a ON a.id = e.article_id "
+                    f"WHERE a.story_id IN ({','.join('?' * len(chunk))})", tuple(chunk)).fetchall()
+                for r in rows:
+                    out.setdefault(r[0], []).append([tuple(e) for e in json.loads(r[1])])
+        return out
+
+    def recent_articles_with_embeddings(self, since: float) -> list[sqlite3.Row]:
+        with self.lock:
+            return self.conn.execute(
+                "SELECT id, url, source, title, text, published_at, story_id, embedding FROM articles "
+                "WHERE embedding IS NOT NULL AND COALESCE(published_at, fetched_at) >= ?", (since,)).fetchall()
 
     def story_articles(self, story_id: int) -> list[sqlite3.Row]:
         with self.lock:

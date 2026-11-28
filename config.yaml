@@ -32,6 +32,13 @@ cluster:
   model: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
   threshold: 0.72           # cosine similarity to join an existing story — tune on your data
   window_hours: 48
+  entity_veto: true         # don't merge an article into a story about a different place
+  entity_match: 0.75        # how close two place names must be to count as the same ("Киев" ~ "Kyiv")
+
+ner:
+  backend: "transformers"   # transformers | none
+  model: "Babelscape/wikineural-multilingual-ner"   # people, organisations, places; EN + RU; ~700 MB, downloaded once
+  min_score: 0.6
 
 editor:
   backend: "gemini"         # gemini | claude | fake   (fake = extractive, no API key)
@@ -62,6 +69,13 @@ wheel:
   station_id_every: 5       # insert station ID after every N stories (0 = off)
   fill_silence: true        # never go quiet: replay the oldest clip instead of waiting for the cooldown
   boost_categories: ["kazakhstan", "central_asia"]
+
+ask:                        # "Ask the radio": answers from recent reports (RAG)
+  top_k: 6                  # reports retrieved per question
+  min_score: 0.25           # cosine similarity needed to count a report as relevant
+  max_chars_per_source: 1500
+  verify: true              # fact-check the answer sentence by sentence, like broadcast scripts
+  voice_ru: "ru-RU-DmitryNeural"   # questions in Russian get a Russian answer and voice
 
 server:
   host: "0.0.0.0"

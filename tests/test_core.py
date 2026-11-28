@@ -154,6 +154,7 @@ def test_pipeline_offline(tmp_path):
     cfg.data_dir = str(tmp_path)
     cfg.clips_path.mkdir(parents=True, exist_ok=True)
     cfg.cluster.embedder, cfg.cluster.threshold = "hash", 0.45
+    cfg.ner.backend = "none"
     cfg.editor.backend, cfg.tts.backend = "fake", "dummy"
     cfg.editor.max_edits_per_cycle = 20  # all fixture stories in one cycle (live config is tuned for free tiers)
     items = [RawArticle(**x) for x in json.loads((ROOT / "fixtures/sample_articles.json").read_text())]

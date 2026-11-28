@@ -107,6 +107,7 @@ def main() -> None:
         cfg.wheel.cooldown_minutes = 0  # continuous playback for a short demo queue
         cfg.clips_path.mkdir(parents=True, exist_ok=True)
         cfg.cluster.embedder, cfg.cluster.threshold = "hash", 0.45
+        cfg.ner.backend = "none"  # the offline demo downloads no models
         cfg.editor.backend = args.editor or "fake"
         cfg.tts.backend = args.tts or "dummy"
         cfg.editor.reedit_cooldown_minutes = 0

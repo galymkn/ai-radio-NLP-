@@ -15,6 +15,7 @@ import numpy as np
 
 from .config import Cluster
 from .db import DB, from_blob
+from .ner import NER, NameMatcher, ner_text
 
 log = logging.getLogger(__name__)
 
@@ -65,13 +66,27 @@ def _normalize(v: np.ndarray) -> np.ndarray:
     return v / n if n > 0 else v
 
 
-def cluster_new_articles(db: DB, embedder: Embedder, cfg: Cluster, now: float | None = None) -> dict:
+def places(entities) -> set[str]:
+    return {name for kind, name in entities if kind == "LOC"}
+
+
+def cluster_new_articles(db: DB, embedder: Embedder, cfg: Cluster, now: float | None = None,
+                         ner: NER | None = None) -> dict:
     now = now or time.time()
     rows = db.unclustered_articles()
     if not rows:
         return {"clustered": 0, "new_stories": 0}
 
     embs = embedder.encode([article_repr(r["title"], r["text"]) for r in rows])
+    ents = [[] for _ in rows]
+    if ner is not None:
+        try:
+            ents = ner.extract([ner_text(r["title"], r["text"]) for r in rows])
+        except Exception:  # noqa: BLE001 — a NER failure must not stop the station; cluster without it
+            log.exception("NER failed; clustering this batch without entities")
+            ner = None
+    for row, e in zip(rows, ents):
+        db.save_entities(row["id"], e)
 
     stories = db.recent_stories(since=now - cfg.window_hours * 3600)
     ids: list[int] = [s["id"] for s in stories]
@@ -82,16 +97,29 @@ def cluster_new_articles(db: DB, embedder: Embedder, cfg: Cluster, now: float | 
     if len(centroids) != len(ids):  # embedder changed -> old centroids are incompatible
         ids, counts, centroids = [], [], []
 
+    # Entity veto: the story's places (from all its articles) must not contradict the article's places.
+    matcher = NameMatcher(embedder, cfg.entity_match) if (cfg.entity_veto and ner is not None) else None
+    story_places: list[set[str]] = []
+    if matcher:
+        known = db.story_entities(ids)
+        story_places = [set().union(*(places(a) for a in known.get(sid, []))) for sid in ids]
+
     touched: set[int] = set()
-    new_stories = 0
-    for row, e in zip(rows, embs):
-        best, best_sim = -1, -1.0
+    new_stories = vetoed = 0
+    for row, e, art_ents in zip(rows, embs, ents):
+        chosen = -1
         if centroids:
             sims = np.stack(centroids) @ e
-            best = int(np.argmax(sims))
-            best_sim = float(sims[best])
-        if best >= 0 and best_sim >= cfg.threshold:
-            i = best
+            for j in np.argsort(-sims):          # most similar story first
+                if sims[j] < cfg.threshold:
+                    break
+                if matcher and matcher.conflict(places(art_ents), story_places[j]):
+                    vetoed += 1                  # similar topic, different place: keep looking
+                    continue
+                chosen = int(j)
+                break
+        if chosen >= 0:
+            i = chosen
             counts[i] += 1
             centroids[i] = _normalize(centroids[i] * (counts[i] - 1) + e)
         else:
@@ -99,13 +127,18 @@ def cluster_new_articles(db: DB, embedder: Embedder, cfg: Cluster, now: float | 
             ids.append(sid)
             counts.append(1)
             centroids.append(e.copy())
+            if matcher:
+                story_places.append(set())
             i = len(ids) - 1
             new_stories += 1
+        if matcher:
+            story_places[i] |= places(art_ents)
         db.set_article_story(row["id"], ids[i], e)
         touched.add(i)
 
     for i in touched:
         db.update_story(ids[i], centroids[i], counts[i], now)
     db.commit()
-    log.info("clustered %d articles (%d new stories, %d touched)", len(rows), new_stories, len(touched))
-    return {"clustered": len(rows), "new_stories": new_stories, "touched": len(touched)}
+    log.info("clustered %d articles (%d new stories, %d touched, %d merges vetoed by places)",
+             len(rows), new_stories, len(touched), vetoed)
+    return {"clustered": len(rows), "new_stories": new_stories, "touched": len(touched), "vetoed": vetoed}

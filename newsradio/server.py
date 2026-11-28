@@ -10,12 +10,15 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import FastAPI, Query, Request, HTTPException
+from pydantic import BaseModel, Field
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
 from . import audio
 from .config import Config
 from .db import DB
+from .editor import RateLimited
+from .ner import summarize
 from .pipeline import Pipeline
 from .tts import make_tts, render
 from .wheel import Listener, needs_station_id, pick
@@ -38,6 +41,16 @@ def prepare_assets(cfg: Config) -> None:
         except Exception as e:  # noqa: BLE001
             log.warning("station ID TTS failed (%s); using silence", e)
             audio.silence(clips / STATION_ID, 1.0)
+
+
+class AskBody(BaseModel):
+    question: str = Field(min_length=3, max_length=300)
+
+
+def story_entities(db: DB, story_id) -> dict[str, list[str]]:
+    if story_id is None:
+        return {}
+    return summarize(db.story_entities([story_id]).get(story_id, []))
 
 
 class Station:
@@ -80,7 +93,8 @@ class Station:
             return {"type": "idle", "retry_after": 10, "audio_file": SILENCE}
         lst.record(clip, now)
         self.db.mark_played(clip.id, now)
-        return {"type": "story", **clip.to_dict(), "audio_file": clip.audio_file}
+        return {"type": "story", **clip.to_dict(), "entities": story_entities(self.db, clip.story_id),
+                "audio_file": clip.audio_file}
 
 
 def create_app(cfg: Config, run_worker: bool | None = None) -> FastAPI:
@@ -89,6 +103,16 @@ def create_app(cfg: Config, run_worker: bool | None = None) -> FastAPI:
     station = Station(cfg, db)
 
     worker_state = {"enabled": run_worker, "last_success": None, "last_error": None, "editor": None}
+    # One pipeline (encoder, NER, editor, TTS) shared by the worker and by listener questions.
+    shared = {"pipeline": None}
+    build_lock = threading.Lock()
+
+    def get_pipeline() -> Pipeline:
+        with build_lock:
+            if shared["pipeline"] is None:
+                shared["pipeline"] = Pipeline.build(cfg, db)
+            return shared["pipeline"]
+
     # How long the editor waits before looking again, by outcome of the last story.
     editor_pause = {"clip": 0, "no-clip": 0, "error": 5, "idle": 10, "paused": 120}
 
@@ -110,7 +134,7 @@ def create_app(cfg: Config, run_worker: bool | None = None) -> FastAPI:
             while True:
                 try:
                     if pipeline is None:
-                        pipeline = await asyncio.to_thread(Pipeline.build, cfg, db)
+                        pipeline = await asyncio.to_thread(get_pipeline)
                         editor_tasks = [asyncio.create_task(editor_loop(pipeline, i))
                                         for i in range(max(1, cfg.editor.workers))]
                     result = await asyncio.to_thread(pipeline.ingest_once)
@@ -151,7 +175,18 @@ def create_app(cfg: Config, run_worker: bool | None = None) -> FastAPI:
     @app.get("/api/clips")
     def clips():
         items = sorted(db.active_clips(), key=lambda c: (-c.priority, -c.created_at))
-        return [c.to_dict() for c in items]
+        return [{**c.to_dict(), "entities": story_entities(db, c.story_id)} for c in items]
+
+    @app.post("/api/ask")
+    def ask(body: AskBody):
+        """Answer a listener's question from recent reports (retrieve, answer, fact-check, voice)."""
+        from .ask import answer_question
+        try:
+            return answer_question(get_pipeline(), body.question.strip())
+        except RateLimited:
+            raise HTTPException(429, "The free LLM quota is used up for now. Try again later.")
+        except ValueError:
+            raise HTTPException(502, "The answer could not be checked against the reports. Try again.")
 
     @app.get("/api/next")
     def next_item(listener: str = Query(..., min_length=4, max_length=64)):

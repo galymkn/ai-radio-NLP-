@@ -14,6 +14,7 @@ from .editor import EditorBackend, RateLimited, SourceDoc, apply_verification, m
 from .ingest import RawArticle
 from .ingest.rss import fetch_feed
 from .ingest.telegram import fetch_channel
+from .ner import make_ner
 from .tts import TTSBackend, make_tts, render
 
 log = logging.getLogger(__name__)
@@ -26,11 +27,13 @@ class Pipeline:
     embedder: Embedder
     editor: EditorBackend
     tts: TTSBackend
+    ner: object = None
 
     @classmethod
     def build(cls, cfg: Config, db: DB | None = None) -> "Pipeline":
         pipeline = cls(cfg=cfg, db=db or DB(cfg.database_url or cfg.db_path), embedder=make_embedder(cfg.cluster),
-                       editor=make_editor(cfg.editor, cfg.station_name, cfg.language), tts=make_tts(cfg.tts))
+                       editor=make_editor(cfg.editor, cfg.station_name, cfg.language), tts=make_tts(cfg.tts),
+                       ner=make_ner(cfg.ner))
         pipeline._claims()
         return pipeline
 
@@ -167,7 +170,7 @@ class Pipeline:
         t0 = time.time()
         items = self.collect() if items is None else items
         stored = self.store(items)
-        cl = cluster_new_articles(self.db, self.embedder, self.cfg.cluster)
+        cl = cluster_new_articles(self.db, self.embedder, self.cfg.cluster, ner=self.ner)
         return {"fetched": len(items), "stored": stored, **cl, "seconds": round(time.time() - t0, 1)}
 
     def run_cycle(self, items: list[RawArticle] | None = None) -> dict:

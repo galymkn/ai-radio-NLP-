@@ -37,6 +37,15 @@ class Cluster:
     model: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
     threshold: float = 0.72
     window_hours: float = 48
+    entity_veto: bool = False       # don't join a story whose places differ from the article's (needs NER)
+    entity_match: float = 0.75      # name similarity that counts as the same place ("Киев" ~ "Kyiv")
+
+
+@dataclass
+class Ner:
+    backend: str = "none"           # transformers | none
+    model: str = "Babelscape/wikineural-multilingual-ner"
+    min_score: float = 0.6
 
 
 @dataclass
@@ -76,6 +85,15 @@ class Wheel:
 
 
 @dataclass
+class Ask:
+    top_k: int = 6                  # reports given to the LLM
+    min_score: float = 0.25         # cosine below this is not relevant enough to use
+    max_chars_per_source: int = 1500
+    verify: bool = True             # fact-check the answer like a broadcast script
+    voice_ru: str = "ru-RU-DmitryNeural"
+
+
+@dataclass
 class Server:
     host: str = "0.0.0.0"
     port: int = 8000
@@ -91,9 +109,11 @@ class Config:
     sources: Sources = field(default_factory=Sources)
     ingest: Ingest = field(default_factory=Ingest)
     cluster: Cluster = field(default_factory=Cluster)
+    ner: Ner = field(default_factory=Ner)
     editor: Editor = field(default_factory=Editor)
     tts: TTS = field(default_factory=TTS)
     wheel: Wheel = field(default_factory=Wheel)
+    ask: Ask = field(default_factory=Ask)
     server: Server = field(default_factory=Server)
 
     @property
