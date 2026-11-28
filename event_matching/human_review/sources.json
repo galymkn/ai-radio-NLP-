@@ -1,0 +1,186 @@
+[
+  {
+    "id": 4,
+    "source": "BBC World",
+    "url": "https://www.bbc.co.uk/news/articles/cm8x0ve4yd7wo?at_medium=RSS&at_campaign=rss",
+    "story_id": 17,
+    "published_at": 1795672918.0,
+    "fetched_at": 1795705191.103443
+  },
+  {
+    "id": 9,
+    "source": "BBC World",
+    "url": "https://www.bbc.co.uk/news/articles/c61wr87wyg5wo?at_medium=RSS&at_campaign=rss",
+    "story_id": 51,
+    "published_at": 1795688751.0,
+    "fetched_at": 1795705191.104285
+  },
+  {
+    "id": 16,
+    "source": "BBC World",
+    "url": "https://www.bbc.co.uk/news/articles/c893r9ke5p97o?at_medium=RSS&at_campaign=rss",
+    "story_id": 10,
+    "published_at": 1795666258.0,
+    "fetched_at": 1795705191.1052139
+  },
+  {
+    "id": 18,
+    "source": "BBC World",
+    "url": "https://www.bbc.co.uk/news/articles/cwp836l8n1jgo?at_medium=RSS&at_campaign=rss",
+    "story_id": 37,
+    "published_at": 1795685264.0,
+    "fetched_at": 1795705191.10548
+  },
+  {
+    "id": 20,
+    "source": "BBC World",
+    "url": "https://www.bbc.co.uk/news/articles/cqy7rn30v314o?at_medium=RSS&at_campaign=rss",
+    "story_id": 7,
+    "published_at": 1795645086.0,
+    "fetched_at": 1795705191.10572
+  },
+  {
+    "id": 25,
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/world/2026/nov/25/people-killed-fuel-tanker-crash-ignites-large-fire-cairo-highway",
+    "story_id": 7,
+    "published_at": 1795653550.0,
+    "fetched_at": 1795705191.1062331
+  },
+  {
+    "id": 50,
+    "source": "Al Jazeera",
+    "url": "https://www.aljazeera.com/news/2026/11/26/highway-explosion-in-giza-how-deadly-are-egypts-roads-and-railways?traffic_source=rss",
+    "story_id": 7,
+    "published_at": 1795692179.0,
+    "fetched_at": 1795705191.108901
+  },
+  {
+    "id": 52,
+    "source": "Al Jazeera",
+    "url": "https://www.aljazeera.com/news/2026/11/26/are-trumps-tariffs-aimed-at-securing-us-friendly-trade-deals?traffic_source=rss",
+    "story_id": 10,
+    "published_at": 1795691250.0,
+    "fetched_at": 1795705191.109081
+  },
+  {
+    "id": 72,
+    "source": "@bbcrussian",
+    "url": "https://t.me/bbcrussian/101847",
+    "story_id": 34,
+    "published_at": 1795683754.0,
+    "fetched_at": 1795705191.1107469
+  },
+  {
+    "id": 74,
+    "source": "@bbcrussian",
+    "url": "https://t.me/bbcrussian/101849",
+    "story_id": 48,
+    "published_at": 1795687809.0,
+    "fetched_at": 1795705191.11089
+  },
+  {
+    "id": 75,
+    "source": "@bbcrussian",
+    "url": "https://t.me/bbcrussian/101850",
+    "story_id": 37,
+    "published_at": 1795690027.0,
+    "fetched_at": 1795705191.110956
+  },
+  {
+    "id": 81,
+    "source": "@bbcrussian",
+    "url": "https://t.me/bbcrussian/101856",
+    "story_id": 51,
+    "published_at": 1795694940.0,
+    "fetched_at": 1795705191.1114318
+  },
+  {
+    "id": 83,
+    "source": "@bbcrussian",
+    "url": "https://t.me/bbcrussian/101858",
+    "story_id": 18,
+    "published_at": 1795696951.0,
+    "fetched_at": 1795705191.1116211
+  },
+  {
+    "id": 88,
+    "source": "@bbcrussian",
+    "url": "https://t.me/bbcrussian/101863",
+    "story_id": 48,
+    "published_at": 1795701010.0,
+    "fetched_at": 1795705191.112063
+  },
+  {
+    "id": 89,
+    "source": "@bbcrussian",
+    "url": "https://t.me/bbcrussian/101864",
+    "story_id": 17,
+    "published_at": 1795702056.0,
+    "fetched_at": 1795705191.11215
+  },
+  {
+    "id": 97,
+    "source": "@rian_ru",
+    "url": "https://t.me/rian_ru/350486",
+    "story_id": 18,
+    "published_at": 1795690881.0,
+    "fetched_at": 1795705191.1127439
+  },
+  {
+    "id": 106,
+    "source": "@rian_ru",
+    "url": "https://t.me/rian_ru/350495",
+    "story_id": 108,
+    "published_at": 1795699943.0,
+    "fetched_at": 1795705191.113395
+  },
+  {
+    "id": 108,
+    "source": "@rian_ru",
+    "url": "https://t.me/rian_ru/350497",
+    "story_id": 108,
+    "published_at": 1795702832.0,
+    "fetched_at": 1795705191.115509
+  },
+  {
+    "id": 136,
+    "source": "@dwglavnoe",
+    "url": "https://t.me/dwglavnoe/70928",
+    "story_id": 18,
+    "published_at": 1795672976.0,
+    "fetched_at": 1795705191.11747
+  },
+  {
+    "id": 138,
+    "source": "@dwglavnoe",
+    "url": "https://t.me/dwglavnoe/70932",
+    "story_id": 18,
+    "published_at": 1795676851.0,
+    "fetched_at": 1795705191.117582
+  },
+  {
+    "id": 142,
+    "source": "@dwglavnoe",
+    "url": "https://t.me/dwglavnoe/70937",
+    "story_id": 34,
+    "published_at": 1795686945.0,
+    "fetched_at": 1795705191.117811
+  },
+  {
+    "id": 147,
+    "source": "@dwglavnoe",
+    "url": "https://t.me/dwglavnoe/70942",
+    "story_id": 48,
+    "published_at": 1795699986.0,
+    "fetched_at": 1795705191.118104
+  },
+  {
+    "id": 149,
+    "source": "@dwglavnoe",
+    "url": "https://t.me/dwglavnoe/70944",
+    "story_id": 37,
+    "published_at": 1795704420.0,
+    "fetched_at": 1795705191.118266
+  }
+]
