@@ -4,70 +4,294 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NewsRadio</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F2A33'/%3E%3Crect x='5' y='9' width='22' height='14' rx='3' fill='%23EDE3C8'/%3E%3Crect x='5' y='15' width='22' height='2' fill='%23D8432E'/%3E%3Ccircle cx='25' cy='5' r='2.5' fill='%23F2A93B'/%3E%3C/svg%3E">
 <style>
-  :root { --bg:#0f1115; --panel:#171a21; --line:#262b35; --text:#e8eaed; --muted:#8b93a1; --accent:#ff4d4f; }
+  /* Fonts ship with the app (SIL OFL, see static/fonts): the player works offline. */
+  @font-face { font-family: "Big Shoulders Display"; font-weight: 500; font-display: swap; src: url("/static/fonts/big-shoulders-display-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family: "Big Shoulders Display"; font-weight: 700; font-display: swap; src: url("/static/fonts/big-shoulders-display-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family: "Big Shoulders Display"; font-weight: 800; font-display: swap; src: url("/static/fonts/big-shoulders-display-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family: "Golos Text"; font-weight: 400; font-display: swap; src: url("/static/fonts/golos-text-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family: "Golos Text"; font-weight: 400; font-display: swap; src: url("/static/fonts/golos-text-cyrillic-400-normal.woff2") format("woff2"); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
+  @font-face { font-family: "Golos Text"; font-weight: 400; font-display: swap; src: url("/static/fonts/golos-text-cyrillic-ext-400-normal.woff2") format("woff2"); unicode-range: U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F; }
+  @font-face { font-family: "Golos Text"; font-weight: 500; font-display: swap; src: url("/static/fonts/golos-text-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family: "Golos Text"; font-weight: 500; font-display: swap; src: url("/static/fonts/golos-text-cyrillic-500-normal.woff2") format("woff2"); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
+  @font-face { font-family: "Golos Text"; font-weight: 500; font-display: swap; src: url("/static/fonts/golos-text-cyrillic-ext-500-normal.woff2") format("woff2"); unicode-range: U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F; }
+  @font-face { font-family: "Golos Text"; font-weight: 600; font-display: swap; src: url("/static/fonts/golos-text-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family: "Golos Text"; font-weight: 600; font-display: swap; src: url("/static/fonts/golos-text-cyrillic-600-normal.woff2") format("woff2"); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
+  @font-face { font-family: "Golos Text"; font-weight: 600; font-display: swap; src: url("/static/fonts/golos-text-cyrillic-ext-600-normal.woff2") format("woff2"); unicode-range: U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F; }
+  :root {
+    --enamel: #0F2A33;      /* receiver body */
+    --enamel-2: #163842;    /* raised panel */
+    --enamel-3: #1E4651;    /* edges, rules */
+    --ivory: #EDE3C8;       /* backlit dial scale */
+    --ink: #2A2418;         /* print on the scale */
+    --amber: #F2A93B;       /* on-air lamp */
+    --needle: #D8432E;      /* tuning needle */
+    --text: #E8EEEC;
+    --muted: #8FA9AE;
+    --face-h: 58px;
+    --display: "Big Shoulders Display", "Golos Text", "Arial Narrow", "Roboto Condensed", sans-serif;
+    --body: "Golos Text", "Segoe UI", system-ui, sans-serif;
+  }
   * { box-sizing: border-box; }
-  body { margin:0; font:15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif; background:var(--bg); color:var(--text); }
-  main { max-width: 760px; margin: 0 auto; padding: 32px 20px 60px; }
-  header { display:flex; align-items:center; gap:12px; margin-bottom: 24px; }
-  .dot { width:10px; height:10px; border-radius:50%; background:var(--muted); }
-  .live .dot { background: var(--accent); box-shadow: 0 0 0 0 rgba(255,77,79,.6); animation: pulse 1.6s infinite; }
-  @keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(255,77,79,0); } 100% { box-shadow: 0 0 0 0 rgba(255,77,79,0); } }
-  h1 { font-size: 20px; margin:0; letter-spacing:.02em; }
-  #stats { margin-left:auto; color:var(--muted); font-size:13px; }
-  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:22px; }
-  .meta { display:flex; gap:8px; align-items:center; color:var(--muted); font-size:13px; text-transform:uppercase; letter-spacing:.06em; }
-  .tag { border:1px solid var(--line); border-radius:999px; padding:1px 10px; }
-  #headline { font-size: 24px; line-height:1.25; margin: 10px 0 12px; }
-  #script { color:#c9ced6; margin:0 0 14px; }
-  #sources { color:var(--muted); font-size:13px; }
-  .controls { display:flex; gap:10px; margin-top: 18px; align-items:center; }
-  button { background:var(--text); color:var(--bg); border:0; border-radius:10px; padding:10px 18px; font-weight:600; cursor:pointer; font-size:14px; }
-  button.secondary { background:transparent; color:var(--text); border:1px solid var(--line); }
-  progress { flex:1; height:4px; appearance:none; }
-  progress::-webkit-progress-bar { background:var(--line); border-radius:2px; }
-  progress::-webkit-progress-value { background:var(--text); border-radius:2px; }
-  h2 { font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin:32px 0 10px; }
-  #queue { list-style:none; margin:0; padding:0; }
-  #queue li { display:flex; gap:12px; padding:10px 2px; border-bottom:1px solid var(--line); }
-  #queue .p { color:var(--muted); font-variant-numeric: tabular-nums; width:22px; }
-  #queue .c { color:var(--muted); font-size:12px; margin-left:auto; white-space:nowrap; }
-  .hint { color:var(--muted); font-size:13px; margin-top:24px; }
-  code { background:var(--panel); padding:1px 6px; border-radius:6px; }
+  html { background: var(--enamel); }
+  body {
+    margin: 0; color: var(--text); font: 400 17px/1.6 var(--body);
+    background:
+      radial-gradient(120% 80% at 50% -10%, #1B4450 0%, transparent 60%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      var(--enamel);
+    min-height: 100vh;
+  }
+  main { max-width: 880px; margin: 0 auto; padding: 28px 22px 72px; }
+
+  /* ---------- header */
+  header { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 26px; }
+  .wordmark { font: 800 34px/1 var(--display); letter-spacing: .01em; margin: 0; }
+  .lamp { display: inline-flex; align-items: center; gap: 9px; color: var(--muted); font-size: 14px; }
+  .lamp i { width: 12px; height: 12px; border-radius: 50%; background: #4A3A1E;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,.6); transition: background .6s, box-shadow .6s; }
+  .live .lamp { color: var(--amber); }
+  .live .lamp i { background: var(--amber); box-shadow: 0 0 6px var(--amber), 0 0 22px rgba(242,169,59,.55); }
+  #stats { margin-left: auto; color: var(--muted); font-size: 14px; }
+
+  /* ---------- receiver panel (the one bold element) */
+  .receiver {
+    background: linear-gradient(180deg, var(--enamel-2), #12333C);
+    border: 1px solid var(--enamel-3); border-radius: 22px; padding: 22px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 30px 60px -30px rgba(0,0,0,.6);
+  }
+  .window {
+    position: relative; height: calc(var(--face-h) * 3.1); overflow: hidden;
+    border-radius: 12px; background: #2B2617; perspective: 700px;
+    box-shadow: 0 0 0 6px #0B2027, 0 0 0 7px var(--enamel-3), inset 0 0 30px rgba(0,0,0,.6);
+  }
+  .drum { position: absolute; inset: 0; transform-style: preserve-3d;
+          transition: transform .9s cubic-bezier(.22,.9,.3,1); }
+  .drum.tuning { transition-duration: 2.4s; transition-timing-function: cubic-bezier(.12,.75,.2,1); }
+  .face {
+    position: absolute; left: -48px; right: -48px; top: 50%; height: var(--face-h); margin-top: calc(var(--face-h) / -2);
+    display: flex; align-items: center; gap: 16px; padding: 0 70px 0 74px;
+    background: linear-gradient(180deg, #F3EBD4, var(--ivory) 55%, #E2D6B6);
+    color: var(--ink); backface-visibility: hidden;
+    border-top: 1px solid rgba(42,36,24,.10); border-bottom: 1px solid rgba(42,36,24,.18);
+  }
+  .face .cat { flex: 0 0 92px; font: 500 15px/1 var(--display); color: #7A6A46; text-align: right; }
+  .face .hl { flex: 1; min-width: 0; font: 700 25px/1 var(--display); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .face.station .hl { font-weight: 800; letter-spacing: .02em; }
+  /* curvature shading and glass, drawn over the drum */
+  .window::before { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background: linear-gradient(180deg, rgba(20,16,8,.78), rgba(20,16,8,0) 34%, rgba(20,16,8,0) 66%, rgba(20,16,8,.78)); }
+  .window::after { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+    background: linear-gradient(165deg, rgba(255,255,255,.16), rgba(255,255,255,0) 38%); }
+  .needle { position: absolute; z-index: 4; left: 0; right: 0; top: 50%; height: var(--face-h);
+            margin-top: calc(var(--face-h) / -2); pointer-events: none;
+            border-top: 1.5px solid rgba(216,67,46,.85); border-bottom: 1.5px solid rgba(216,67,46,.85);
+            box-shadow: 0 0 14px rgba(216,67,46,.25); }
+  .needle::before, .needle::after { content: ""; position: absolute; top: 50%; margin-top: -8px; border: 8px solid transparent; }
+  .needle::before { left: 0; border-left-color: var(--needle); }
+  .needle::after { right: 0; border-right-color: var(--needle); }
+
+  /* tuning scale doubles as clip progress */
+  .scale { position: relative; height: 34px; margin: 20px 4px 0; }
+  .ticks { position: absolute; left: 0; right: 0; top: 0; height: 14px;
+    background:
+      repeating-linear-gradient(90deg, rgba(143,169,174,.75) 0 1px, transparent 1px 10%),
+      repeating-linear-gradient(90deg, rgba(143,169,174,.35) 0 1px, transparent 1px 2%);
+    background-size: 100% 14px, 100% 7px; background-repeat: no-repeat; background-position: 0 0, 0 7px; }
+  .pointer { position: absolute; top: -4px; width: 3px; height: 22px; margin-left: -1px; border-radius: 2px;
+             background: var(--needle); box-shadow: 0 0 6px rgba(216,67,46,.6); left: 0; }
+  .times { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between;
+           color: var(--muted); font: 500 14px/1 var(--display); letter-spacing: .04em; }
+
+  .controls { display: flex; align-items: center; gap: 14px; margin-top: 18px; flex-wrap: wrap; }
+  button { font: 600 16px/1 var(--body); border-radius: 999px; padding: 14px 24px; cursor: pointer; }
+  #play { background: var(--amber); color: #2A1B04; border: 0; min-width: 150px;
+          box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 8px 20px -8px rgba(242,169,59,.7); }
+  #play:active { transform: translateY(1px); }
+  #skip { background: transparent; color: var(--text); border: 1px solid var(--enamel-3); }
+  #skip:disabled { color: #5D7479; cursor: default; }
+  button:focus-visible { outline: 3px solid var(--ivory); outline-offset: 3px; }
+  .vu { margin-left: auto; width: 132px; height: 62px; }
+
+  /* ---------- what is on air */
+  .now { margin-top: 38px; max-width: 68ch; }
+  #headline { font: 700 clamp(32px, 5vw, 46px)/1.04 var(--display); margin: 0 0 14px; letter-spacing: .005em; }
+  #script { margin: 0 0 14px; color: #CBD8D6; }
+  #sources { color: var(--muted); font-size: 15px; margin: 0; }
+
+  .queue { margin-top: 44px; }
+  .queue h2 { font: 700 22px/1 var(--display); margin: 0 0 10px; color: var(--text); }
+  #queue { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--enamel-3); }
+  #queue li { display: grid; grid-template-columns: 30px 1fr auto; gap: 14px; align-items: center;
+              padding: 12px 2px; border-bottom: 1px solid var(--enamel-3); }
+  #queue li.on { color: var(--amber); }
+  .bars { display: flex; gap: 2px; align-items: flex-end; height: 14px; }
+  .bars span { width: 4px; border-radius: 1px; background: var(--enamel-3); }
+  .bars span.lit { background: var(--muted); }
+  #queue li.on .bars span.lit { background: var(--amber); }
+  .qcat { color: var(--muted); font-size: 14px; }
+  .empty { color: var(--muted); padding: 14px 2px; }
+  .hint { margin-top: 30px; color: var(--muted); font-size: 14px; }
+  .hint code { color: var(--text); background: var(--enamel-2); padding: 2px 7px; border-radius: 6px; font-size: 13px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+  @media (max-width: 600px) {
+    :root { --face-h: 50px; }
+    main { padding: 18px 14px 56px; }
+    .receiver { padding: 14px; border-radius: 18px; }
+    .face { padding: 0 60px 0 62px; gap: 10px; }
+    .face .cat { flex-basis: 64px; font-size: 13px; }
+    .face .hl { font-size: 20px; }
+    .vu { width: 104px; height: 50px; }
+    #stats { margin-left: 0; width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .drum, .drum.tuning { transition: none; }
+    .lamp i { transition: none; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <header id="hdr">
-    <span class="dot"></span><h1 id="station">NewsRadio</h1><span id="stats"></span>
+<main id="app">
+  <header>
+    <h1 class="wordmark" id="station">NewsRadio</h1>
+    <span class="lamp"><i aria-hidden="true"></i><span id="kind">Off air</span></span>
+    <span id="stats"></span>
   </header>
 
-  <section class="card">
-    <div class="meta"><span id="kind">Off air</span><span class="tag" id="category" hidden></span></div>
-    <div id="headline">Press play to start the news wheel.</div>
-    <p id="script"></p>
-    <div id="sources"></div>
+  <section class="receiver" aria-label="Receiver">
+    <div class="window" aria-hidden="true">
+      <div class="drum" id="drum"></div>
+      <div class="needle"></div>
+    </div>
+
+    <div class="scale" aria-hidden="true">
+      <div class="ticks"></div>
+      <div class="pointer" id="pointer"></div>
+      <div class="times"><span id="elapsed">0:00</span><span id="total">0:00</span></div>
+    </div>
+
     <div class="controls">
-      <button id="play">Play</button>
-      <button id="skip" class="secondary" disabled>Skip</button>
-      <progress id="prog" value="0" max="1"></progress>
+      <button id="play" type="button">Listen live</button>
+      <button id="skip" type="button" disabled>Skip this story</button>
+      <svg class="vu" viewBox="0 0 132 62" aria-hidden="true">
+        <path d="M14 56 A56 56 0 0 1 118 56" fill="none" stroke="#1E4651" stroke-width="8" stroke-linecap="round"/>
+        <path d="M96 22 A56 56 0 0 1 118 56" fill="none" stroke="#D8432E" stroke-width="8" stroke-linecap="round" opacity=".75"/>
+        <line id="vuNeedle" x1="66" y1="58" x2="66" y2="12" stroke="#EDE3C8" stroke-width="2.5" stroke-linecap="round"
+              style="transform-origin: 66px 58px; transform: rotate(-58deg)"/>
+        <circle cx="66" cy="58" r="4.5" fill="#EDE3C8"/>
+      </svg>
     </div>
   </section>
 
-  <h2>On the wheel</h2>
-  <ul id="queue"></ul>
+  <section class="now" aria-live="polite">
+    <h2 id="headline">Press Listen live to tune in.</h2>
+    <p id="script">The editor turns reports from BBC, Al Jazeera, Astana Times, Tengrinews and others into short bulletins, checks every sentence against the sources and reads them aloud.</p>
+    <p id="sources"></p>
+  </section>
 
-  <p class="hint">Plain stream for VLC / radio apps: <code id="streamUrl"></code></p>
+  <section class="queue">
+    <h2>On the wheel</h2>
+    <ul id="queue"><li class="empty">No stories ready yet. The editor is writing the first one.</li></ul>
+  </section>
+
+  <p class="hint">Listen in VLC or a radio app: <code id="streamUrl"></code></p>
   <audio id="audio" preload="auto"></audio>
 </main>
 <script>
 const $ = (id) => document.getElementById(id);
 const audio = $("audio");
-let listener = localStorage.getItem("nr_listener");
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let listener = null;
+try { listener = localStorage.getItem("nr_listener"); } catch {}
 if (!listener) { listener = crypto.randomUUID().slice(0, 12); try { localStorage.setItem("nr_listener", listener); } catch {} }
-let current = null, playing = false;
+let current = null, playing = false, tunedIn = false;
 $("streamUrl").textContent = location.origin + "/stream";
 
+/* ---------------- the dial drum: 12 faces on a cylinder, face 0 is the station ident */
+const FACES = 12, STEP = 360 / FACES;
+const drum = $("drum");
+const faceEls = [];
+const faceOf = new Map();      // clip id -> face index
+let nextSlot = 1, angle = 0, faceIndex = 0;
+
+function radius() {
+  const h = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--face-h")) || 58;
+  return h / (2 * Math.tan(Math.PI / FACES));
+}
+function buildDrum() {
+  for (let i = 0; i < FACES; i++) {
+    const f = document.createElement("div");
+    f.className = "face";
+    f.innerHTML = '<span class="cat"></span><span class="hl"></span>';
+    drum.appendChild(f);
+    faceEls.push(f);
+  }
+  setFace(0, "", "NewsRadio", true);
+  for (let i = 1; i < FACES; i++) setFace(i, "", "");
+  layoutDrum();
+}
+function layoutDrum() {
+  const r = radius();
+  faceEls.forEach((f, i) => { f.style.transform = `rotateX(${i * STEP}deg) translateZ(${r}px)`; });
+  drum.style.transform = `translateZ(${-r}px) rotateX(${angle}deg)`;
+}
+function setFace(i, cat, headline, station = false) {
+  const f = faceEls[i];
+  f.classList.toggle("station", station);
+  f.querySelector(".cat").textContent = cat;
+  f.querySelector(".hl").textContent = headline;
+}
+function placeClip(clip) {
+  if (faceOf.has(clip.id)) { setFace(faceOf.get(clip.id), pretty(clip.category), clip.headline); return faceOf.get(clip.id); }
+  const slot = nextSlot;
+  nextSlot = nextSlot % (FACES - 1) + 1;
+  for (const [id, idx] of faceOf) if (idx === slot) faceOf.delete(id);
+  faceOf.set(clip.id, slot);
+  setFace(slot, pretty(clip.category), clip.headline);
+  return slot;
+}
+function turnTo(i, spin = false) {
+  // Always turn forward, like a tuning drum; the first tune-in adds two full turns.
+  let delta = ((i - faceIndex) % FACES + FACES) % FACES;
+  if (spin) delta += FACES * 2;
+  if (delta === 0) return;
+  faceIndex = i;
+  angle -= delta * STEP;
+  drum.classList.toggle("tuning", spin && !reduceMotion);
+  drum.style.transform = `translateZ(${-radius()}px) rotateX(${angle}deg)`;
+}
+const pretty = (c) => (c || "").replace("_", " ");
+
+/* ---------------- VU meter, driven by the real audio */
+let analyser = null, levels = null, vuLevel = 0;
+function startMeter() {
+  if (analyser) return;
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const src = ctx.createMediaElementSource(audio);
+    analyser = ctx.createAnalyser();
+    analyser.fftSize = 1024;
+    src.connect(analyser); analyser.connect(ctx.destination);
+    levels = new Uint8Array(analyser.fftSize);
+    requestAnimationFrame(drawMeter);
+  } catch { analyser = null; }
+}
+function drawMeter() {
+  let rms = 0;
+  if (playing && !audio.paused) {
+    analyser.getByteTimeDomainData(levels);
+    for (const v of levels) { const x = (v - 128) / 128; rms += x * x; }
+    rms = Math.sqrt(rms / levels.length);
+  }
+  const target = Math.min(1, rms * 3.2);
+  vuLevel += (target - vuLevel) * (target > vuLevel ? 0.35 : 0.08);  // fast attack, slow release
+  $("vuNeedle").style.transform = `rotate(${-58 + vuLevel * 116}deg)`;
+  requestAnimationFrame(drawMeter);
+}
+
+/* ---------------- playback */
 async function next() {
   if (!playing) return;
   let item;
@@ -81,54 +305,100 @@ async function next() {
 }
 
 function render(item) {
-  $("kind").textContent = { story: "Now playing", station_id: "Station ID", idle: "Waiting for news" }[item.type];
-  $("headline").textContent = item.type === "idle" ? "No fresh stories yet — the editor is working." : item.headline;
-  $("script").textContent = item.script || "";
-  $("sources").textContent = item.sources && item.sources.length ? "Sources: " + item.sources.join(", ") : "";
-  $("category").hidden = !item.category;
-  $("category").textContent = item.category || "";
+  const spin = !tunedIn;
+  tunedIn = true;
+  if (item.type === "story") {
+    turnTo(placeClip(item), spin);
+    $("kind").textContent = "On air";
+    $("headline").textContent = item.headline;
+    $("script").textContent = item.script || "";
+    $("sources").textContent = item.sources && item.sources.length ? "Sources: " + item.sources.join(", ") : "";
+  } else if (item.type === "station_id") {
+    turnTo(0, spin);
+    $("kind").textContent = "On air";
+    $("headline").textContent = "Station identification";
+    $("script").textContent = "You're listening to NewsRadio. Automated news, around the clock.";
+    $("sources").textContent = "";
+  } else {
+    turnTo(0, spin);
+    $("kind").textContent = "Waiting for news";
+    $("headline").textContent = "No stories ready yet.";
+    $("script").textContent = "The editor is writing and checking the first story. Playback starts on its own.";
+    $("sources").textContent = "";
+  }
   $("skip").disabled = item.type !== "story";
+  markQueue();
 }
 
+const fmt = (s) => !isFinite(s) ? "0:00" : `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+audio.addEventListener("timeupdate", () => {
+  const p = audio.duration ? audio.currentTime / audio.duration : 0;
+  $("pointer").style.left = (p * 100) + "%";
+  $("elapsed").textContent = fmt(audio.currentTime);
+  $("total").textContent = fmt(audio.duration);
+});
 audio.addEventListener("playing", () => {
   if (current?.type === "story") {
     fetch(`/api/started?listener=${encodeURIComponent(listener)}&clip_id=${current.id}`, {method: "POST"}).catch(() => {});
   }
 });
 audio.addEventListener("ended", next);
-audio.addEventListener("timeupdate", () => { $("prog").value = audio.duration ? audio.currentTime / audio.duration : 0; });
 
 $("play").onclick = () => {
   playing = !playing;
-  $("play").textContent = playing ? "Pause" : "Play";
-  $("hdr").classList.toggle("live", playing);
-  if (playing) { if (audio.src && !audio.ended && audio.currentTime > 0) audio.play(); else next(); }
-  else audio.pause();
+  $("play").textContent = playing ? "Pause" : "Listen live";
+  $("app").classList.toggle("live", playing);
+  if (!playing) { audio.pause(); $("kind").textContent = "Off air"; return; }
+  startMeter();
+  if (audio.src && !audio.ended && audio.currentTime > 0) { audio.play(); $("kind").textContent = "On air"; }
+  else next();
 };
 
-$("skip").onclick = async () => {
+$("skip").onclick = () => {
   if (current && current.category) {
     fetch(`/api/skip?listener=${listener}&category=${encodeURIComponent(current.category)}`, { method: "POST" });
   }
   audio.pause(); next();
 };
 
+/* ---------------- what is on the wheel */
+let clipsCache = [];
+function markQueue() {
+  document.querySelectorAll("#queue li[data-id]").forEach((li) => {
+    li.classList.toggle("on", current?.type === "story" && String(current.id) === li.dataset.id);
+  });
+}
 async function refresh() {
   try {
     const [st, clips] = await Promise.all([fetch("/api/status").then(r => r.json()), fetch("/api/clips").then(r => r.json())]);
     $("station").textContent = st.station;
     document.title = st.station;
-    $("stats").textContent = `${st.clips_active} stories · ${st.articles} articles · ${Math.round(st.audio_seconds_active / 60)} min of audio`;
-    const ul = $("queue"); ul.replaceChildren();
-    for (const c of clips.slice(0, 15)) {
-      const li = document.createElement("li");
-      const p = document.createElement("span"); p.className = "p"; p.textContent = "P" + c.priority;
-      const h = document.createElement("span"); h.textContent = c.headline;
-      const cat = document.createElement("span"); cat.className = "c"; cat.textContent = c.category || "";
-      li.append(p, h, cat); ul.append(li);
+    const mins = Math.round(st.audio_seconds_active / 60);
+    $("stats").textContent = `${st.clips_active} ${st.clips_active === 1 ? "story" : "stories"} ready, ${mins} min of audio, ${st.articles} articles read`;
+    clipsCache = clips;
+    clips.slice(0, FACES - 1).forEach(placeClip);
+    const ul = $("queue");
+    ul.replaceChildren();
+    if (!clips.length) {
+      const li = document.createElement("li"); li.className = "empty";
+      li.textContent = "No stories ready yet. The editor is writing the first one.";
+      ul.append(li); return;
     }
+    for (const c of clips.slice(0, 15)) {
+      const li = document.createElement("li"); li.dataset.id = c.id;
+      const bars = document.createElement("span"); bars.className = "bars";
+      bars.setAttribute("aria-label", `Priority ${c.priority} of 5`);
+      for (let i = 1; i <= 5; i++) { const b = document.createElement("span"); b.style.height = (3 + i * 2.2) + "px"; if (i <= c.priority) b.className = "lit"; bars.append(b); }
+      const h = document.createElement("span"); h.textContent = c.headline;
+      const cat = document.createElement("span"); cat.className = "qcat"; cat.textContent = pretty(c.category);
+      li.append(bars, h, cat); ul.append(li);
+    }
+    markQueue();
   } catch {}
 }
+
+buildDrum();
+addEventListener("resize", layoutDrum);
 refresh(); setInterval(refresh, 15000);
 </script>
 </body>

@@ -137,6 +137,7 @@ def create_app(cfg: Config, run_worker: bool | None = None) -> FastAPI:
     app = FastAPI(title=cfg.station_name, lifespan=lifespan)
     app.state.station = station
     app.mount("/audio", StaticFiles(directory=str(cfg.clips_path)), name="audio")
+    app.mount("/static", StaticFiles(directory=str(STATIC)), name="static")  # fonts for the player
 
     @app.get("/")
     def player():
